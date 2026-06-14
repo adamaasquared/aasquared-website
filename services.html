@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fractional &amp; Interim Media Leadership — AA Squared · Adam Kanter</title>
+<meta name="description" content="Senior media leadership without the full-time hire. 20+ years, 60+ countries. Fractional, interim, and project-based engagements across EMEA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ==================== TOKENS ==================== */
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE8DC;
+  --orange: #E8720C;
+  --orange-hover: #C45E08;
+  --orange-muted: #F4A05A;
+  --black: #1A1A1A;
+  --ink: #2C2C2C;
+  --ink-light: #6B6560;
+  --white: #FAFAF8;
+  --rule: #D8D2C6;
+
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 32px;
+  --sp-6: 48px;
+  --sp-7: 64px;
+  --sp-8: 80px;
+  --sp-9: 96px;
+  --sp-10: 120px;
+
+  --radius: 4px;
+  --radius-lg: 12px;
+  --max-w: 1160px;
+  --transition: 200ms ease;
+}
+
+/* ==================== RESET ==================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+/* ==================== TYPOGRAPHY ==================== */
+.t-display {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.t-h1 { font-size: clamp(36px, 4.5vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.t-h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.t-h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+.t-label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.t-body-lg { font-size: 22px; font-weight: 400; line-height: 1.65; }
+.t-body { font-size: 18px; font-weight: 400; line-height: 1.7; }
+.t-caption { font-size: 15px; font-weight: 400; }
+
+/* ==================== LAYOUT ==================== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-4); }
+.section { padding: var(--sp-10) 0; }
+
+/* ==================== BUTTONS ==================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--orange-hover); box-shadow: 0 4px 20px rgba(232,114,12,0.35); }
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--rule);
+}
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.35);
+}
+.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+/* ==================== NAV ==================== */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  padding: 20px 0;
+}
+#nav.scrolled {
+  background: var(--white);
+  box-shadow: 0 1px 0 var(--rule);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.nav-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.nav-logo {
+  height: 80px;
+  width: auto;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+.nav-links a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--orange); }
+.nav-links a.active { color: var(--orange); }
+.nav-cta { display: flex; align-items: center; gap: var(--sp-3); }
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform var(--transition), opacity var(--transition);
+  border-radius: 2px;
+}
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--white);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  transition: color var(--transition);
+}
+.mobile-nav a:hover { color: var(--orange); }
+
+/* ==================== HERO ==================== */
+#hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 160px;
+  padding-bottom: var(--sp-10);
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+}
+.hero-ghost {
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: min(55vw, 680px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.hero-content { position: relative; z-index: 1; max-width: 820px; }
+.hero-eyebrow { margin-bottom: var(--sp-4); }
+.hero-headline { margin-bottom: var(--sp-5); }
+.hero-headline .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.hero-headline .word.visible { opacity: 1; transform: translateY(0); }
+.hero-subhead {
+  color: var(--ink-light);
+  max-width: 620px;
+  margin-bottom: var(--sp-7);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+.hero-subhead.visible { opacity: 1; transform: translateY(0); }
+.hero-ctas {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease 0.65s, transform 0.5s ease 0.65s;
+}
+.hero-ctas.visible { opacity: 1; transform: translateY(0); }
+
+/* ==================== PROBLEM / WHO THIS IS FOR ==================== */
+#fit {
+  background: var(--black);
+  color: var(--white);
+  padding: var(--sp-10) 0;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+.problem-text .t-label { color: var(--orange-muted); margin-bottom: var(--sp-4); }
+.problem-text .t-h2 { color: var(--white); margin-bottom: var(--sp-4); }
+.problem-text .t-body { color: rgba(250,250,248,0.7); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+}
+.stat-number {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: var(--sp-2);
+}
+.stat-label {
+  font-size: 14px;
+  color: rgba(250,250,248,0.6);
+  line-height: 1.4;
+}
+
+/* ==================== OFFERINGS SECTION ==================== */
+#offerings {
+  background: var(--cream);
+  padding: var(--sp-10) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.section-header { text-align: center; margin-bottom: var(--sp-8); }
+.section-header .t-label { margin-bottom: var(--sp-3); }
+.section-header .t-h2 { margin-bottom: 0; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+.step-card {
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  opacity: 0;
+  transform: translateY(32px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  box-shadow: 0 2px 8px rgba(44,44,44,0.06);
+}
+.step-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform 0.5s ease, opacity 0.5s ease;
+}
+.step-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 8px 32px rgba(232,114,12,0.14);
+  transform: translateY(-2px);
+}
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+.card-name { font-size: 18px; font-weight: 700; color: var(--ink); }
+.card-desc { font-size: 15px; color: var(--ink-light); line-height: 1.6; flex: 1; }
+.card-proof {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--orange);
+  border-top: 1px solid var(--rule);
+  padding-top: var(--sp-3);
+  margin-top: auto;
+}
+
+/* ==================== ENGAGEMENT MODELS ==================== */
+#models {
+  background: var(--white);
+  padding: var(--sp-10) 0;
+}
+.models-header { margin-bottom: var(--sp-8); }
+.models-header .t-label { margin-bottom: var(--sp-3); }
+.models-header .t-h2 { margin-bottom: var(--sp-4); }
+.models-header .t-body { color: var(--ink-light); max-width: 580px; }
+.models-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+}
+.model-card {
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.model-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 6px 24px rgba(232,114,12,0.1);
+  transform: translateY(-2px);
+}
+.model-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: var(--sp-2);
+}
+.model-meta {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--orange);
+  margin-bottom: var(--sp-3);
+  letter-spacing: 0.04em;
+}
+.model-desc { font-size: 15px; color: var(--ink-light); line-height: 1.6; }
+
+/* ==================== BRIDGE SIGNPOST ==================== */
+#bridge-link {
+  background: var(--cream);
+  padding: var(--sp-10) 0;
+  text-align: center;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+#bridge-link .t-label { color: var(--orange); margin-bottom: var(--sp-4); }
+#bridge-link .t-h2 { margin-bottom: var(--sp-4); max-width: 540px; margin-left: auto; margin-right: auto; }
+#bridge-link .t-body { color: var(--ink-light); max-width: 560px; margin: 0 auto var(--sp-6); line-height: 1.75; }
+
+/* ==================== ABOUT ==================== */
+#about {
+  background: var(--black);
+  color: var(--white);
+  padding: var(--sp-10) 0;
+  text-align: center;
+}
+#about .t-label { color: var(--orange-muted); margin-bottom: var(--sp-4); }
+#about .t-h2 { color: var(--white); margin-bottom: var(--sp-4); max-width: 640px; margin-left: auto; margin-right: auto; }
+.about-body { color: rgba(250,250,248,0.7); max-width: 580px; margin: 0 auto var(--sp-4); line-height: 1.75; font-size: 18px; }
+.credentials-strip {
+  margin-top: var(--sp-5);
+  margin-bottom: var(--sp-5);
+  font-size: 16px;
+  color: rgba(250,250,248,0.7);
+  line-height: 2.2;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.credentials-strip .dot { margin: 0 var(--sp-3); font-size: 1.4em; font-weight: 700; vertical-align: middle; }
+#trusted {
+  background: var(--white);
+  padding: var(--sp-9) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  text-align: center;
+}
+#trusted .trusted-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); margin-bottom: var(--sp-5); }
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  opacity: 0.8;
+  transition: opacity var(--transition);
+}
+.logo-item:hover { opacity: 1; }
+.logo-item img {
+  height: 100%;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+}
+.logo-item.text-logo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  height: auto;
+  opacity: 0.6;
+}
+.logo-item.text-logo:hover { opacity: 1; }
+.about-avail {
+  margin-top: var(--sp-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(250,250,248,0.5);
+}
+.avail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4CAF50;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+.ai-note {
+  margin-top: var(--sp-7);
+  padding: var(--sp-4) var(--sp-5);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  color: rgba(250,250,248,0.35);
+  line-height: 1.7;
+  text-align: left;
+}
+
+/* ==================== CTA ==================== */
+#cta {
+  background: var(--white);
+  padding: var(--sp-10) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+}
+.cta-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: min(22vw, 240px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  opacity: 0.03;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.cta-content { position: relative; z-index: 1; }
+.cta-content .t-label { margin-bottom: var(--sp-4); }
+.cta-content .t-h2 { margin-bottom: var(--sp-3); }
+.cta-content .t-body { color: var(--ink-light); margin-bottom: var(--sp-6); }
+.cta-secondary {
+  margin-top: var(--sp-4);
+  font-size: 15px;
+  color: var(--ink-light);
+}
+.cta-secondary a { color: var(--orange); font-weight: 600; transition: color var(--transition); }
+.cta-secondary a:hover { color: var(--orange-hover); }
+
+/* ==================== FOOTER ==================== */
+footer {
+  background: #141414;
+  padding: var(--sp-6) 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.footer-wordmark { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: var(--orange); }
+.footer-logo { height: 80px; width: auto; }
+.footer-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.footer-links a { font-size: 14px; color: rgba(250,250,248,0.45); transition: color var(--transition); }
+.footer-links a:hover { color: var(--orange-muted); }
+.footer-copy { font-size: 15px; color: rgba(250,250,248,0.6); }
+
+/* ==================== DIVIDER ==================== */
+.rule { border: none; border-top: 1px solid var(--rule); }
+
+/* ==================== SCROLL ANIM ==================== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ==================== MOBILE ==================== */
+@media (max-width: 900px) {
+  .problem-grid { grid-template-columns: 1fr; gap: var(--sp-7); }
+  .models-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta .btn { display: none; }
+  .nav-burger { display: flex; }
+  .cards-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--sp-3);
+    padding-bottom: var(--sp-3);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .cards-grid::-webkit-scrollbar { display: none; }
+  .step-card {
+    min-width: 280px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  .models-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .hero-ghost { font-size: 80vw; right: -10%; }
+}
+@media (max-width: 480px) {
+  :root { --sp-10: 72px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== MOBILE NAV ==================== -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="services.html" onclick="closeMobileNav()">Services</a>
+  <a href="bridge-framework.html" onclick="closeMobileNav()">BRIDGE Framework</a>
+  <a href="mailto:adam.kanter@aasquaredbv.com" onclick="closeMobileNav()">Contact</a>
+  <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary" style="margin-top:16px" onclick="closeMobileNav()">Schedule a Call</a>
+</div>
+
+<!-- ==================== NAV ==================== -->
+<nav id="nav" role="navigation" aria-label="Main">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-wordmark" href="services.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 92" class="nav-logo" aria-label="AA Squared">
+  <defs>
+    <linearGradient id="n-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="n-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="n-wm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="46" r="34" stroke="url(#n-ring)" stroke-width="2" fill="none"/>
+  <line x1="13"   y1="57"   x2="67"   y2="33"  stroke="#FF8828" stroke-width="4"   stroke-linecap="round"/>
+  <line x1="26.5" y1="38.6" x2="26.5" y2="51"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <line x1="40"   y1="31"   x2="40"   y2="45"  stroke="#FF8828" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="53.5" y1="26.6" x2="53.5" y2="39"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <path d="M13 57 Q40 12 67 33" stroke="url(#n-arc)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="13" cy="57" r="7" fill="#FFAA38"/>
+  <circle cx="67" cy="33" r="7" fill="#FF5F1F"/>
+  <text x="96" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="56" letter-spacing="-2" fill="url(#n-wm)">AA</text>
+  <text x="100" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" letter-spacing="4" fill="#C07028">SQUARED</text>
+  <text x="100" y="84" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="11" letter-spacing="0.5" fill="#6A6058">Bridging US brands into Europe</text>
+</svg></a>
+      <ul class="nav-links" role="list">
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="bridge-framework.html">BRIDGE Framework</a></li>
+        <li><a href="mailto:adam.kanter@aasquaredbv.com">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary" style="padding:10px 20px;font-size:14px;">Schedule a Call</a>
+        <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ==================== HERO ==================== -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-ghost" aria-hidden="true">A</div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="t-label hero-eyebrow fade-up">Fractional &amp; Interim Media Leadership</p>
+      <h1 class="t-display hero-headline" id="heroHeadline" aria-label="Senior media leadership, without the full-time hire."></h1>
+      <p class="t-body-lg hero-subhead" id="heroSubhead">
+        20+ years building, restructuring, and scaling media functions across 60+ countries. Available for fractional, interim, and project-based engagements across EMEA.
+      </p>
+      <div class="hero-ctas" id="heroCtas">
+        <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary">Book a Diagnostic Call →</a>
+        <a href="bridge-framework.html" class="btn btn-secondary">Explore the BRIDGE Framework</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== WHO THIS IS FOR ==================== -->
+<section id="fit" aria-label="Who this is for">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text fade-up">
+        <p class="t-label">The Right Fit</p>
+        <h2 class="t-h2" style="margin-bottom:var(--sp-4);">Right for you if media is a meaningful cost centre and the results don't match the spend.</h2>
+        <p class="t-body">Most companies at scale are leaving value on the table in their media setup. Wrong agency structure, no measurement rigour, channels running on autopilot. A fractional Head of Media brings senior strategic leadership to fix that — without the overhead of a full-time executive hire.</p>
+      </div>
+      <div class="stats-grid fade-up" style="transition-delay:0.15s">
+        <div class="stat-card">
+          <div class="stat-number" data-target="100" data-prefix="$" data-suffix="M">$0M</div>
+          <div class="stat-label">Media budget managed, Uber EMEA (35 countries)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="32" data-suffix="%">0%</div>
+          <div class="stat-label">Agency cost reduction, Just Eat Takeaway (15 countries)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="36" data-suffix="%">0%</div>
+          <div class="stat-label">Offline agency savings, Marktplaats</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="3.5" data-prefix="$" data-suffix="M" data-decimal="1">$0M</div>
+          <div class="stat-label">Validated savings from 3rd-party audit, Uber</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== THREE OFFERINGS ==================== -->
+<section id="offerings" aria-label="What I deliver">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="t-label">What I Deliver</p>
+      <h2 class="t-h2" style="margin-top:var(--sp-3);">Three ways I work with clients.</h2>
+    </div>
+    <div class="cards-grid" id="offeringsGrid">
+      <div class="step-card">
+        <div class="card-icon">S</div>
+        <div class="card-name">Strategic Media Transformation &amp; Measurement</div>
+        <p class="card-desc">At Marktplaats, restructured media operations from centralised to localised in 4 months. Built a bespoke AI-driven Marketing Mix Model aligned to local business needs, reducing reporting lag by 8 weeks and enabling quarterly budget reallocation based on ROI.</p>
+        <div class="card-proof">4 months · 8 weeks reporting lag removed · Marktplaats</div>
+      </div>
+      <div class="step-card">
+        <div class="card-icon">A</div>
+        <div class="card-name">Agency Performance &amp; Budget Optimisation</div>
+        <p class="card-desc">Delivered measurable agency value at scale. Renegotiated retainer across 15 countries at Just Eat Takeaway (32% cost reduction), delivered 36% in offline agency savings at Marktplaats, and commissioned a 3rd-party audit at Uber delivering $3.5M in validated savings.</p>
+        <div class="card-proof">32% · 36% · $3.5M · Three companies</div>
+      </div>
+      <div class="step-card">
+        <div class="card-icon">B</div>
+        <div class="card-name">Building Media Operations from Scratch</div>
+        <p class="card-desc">At Uber, created EMEA's first integrated media planning process: 35 countries, digital and offline, local and global teams. Extended the strategic planning window from 3 to 8 weeks, reduced last-minute firefighting by 60%, and built a framework later adopted as the Regional Brand Excellence standard.</p>
+        <div class="card-proof">35 countries · 60% less firefighting · Uber EMEA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ENGAGEMENT MODELS ==================== -->
+<section id="models" aria-label="Engagement models">
+  <div class="container">
+    <div class="models-header fade-up">
+      <p class="t-label">How We Work Together</p>
+      <h2 class="t-h2" style="margin-top:var(--sp-3);">Scoped to the problem, not a rate card.</h2>
+      <p class="t-body" style="margin-top:var(--sp-4);">Every engagement starts with a 45-minute diagnostic call. From there, the right model depends on what you actually need.</p>
+    </div>
+    <div class="models-grid">
+      <div class="model-card fade-up" style="transition-delay:0.05s">
+        <div class="model-title">Fractional</div>
+        <div class="model-meta">2–3 days/week</div>
+        <p class="model-desc">Ongoing strategic media leadership embedded in your team. Senior thinking, without the full-time cost.</p>
+      </div>
+      <div class="model-card fade-up" style="transition-delay:0.1s">
+        <div class="model-title">Interim</div>
+        <div class="model-meta">3–12 months, full-time</div>
+        <p class="model-desc">Cover a leadership gap or drive a transformation. Full commitment, defined timeline.</p>
+      </div>
+      <div class="model-card fade-up" style="transition-delay:0.15s">
+        <div class="model-title">Project-Based</div>
+        <div class="model-meta">Defined scope, defined outcome</div>
+        <p class="model-desc">Agency audit, MMM build, market entry, team reorganisation. Clear deliverables and a clear end date.</p>
+      </div>
+      <div class="model-card fade-up" style="transition-delay:0.2s">
+        <div class="model-title">Advisory</div>
+        <div class="model-meta">Monthly retainer</div>
+        <p class="model-desc">A senior media mind available when you need one. For teams that want a sounding board, not a schedule.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BRIDGE SIGNPOST ==================== -->
+<section id="bridge-link" aria-label="Expanding into Europe">
+  <div class="container">
+    <p class="t-label fade-up">Expanding into Europe?</p>
+    <h2 class="t-h2 fade-up" style="margin-top:var(--sp-3);transition-delay:0.1s;">The BRIDGE Framework is where US companies start.</h2>
+    <p class="t-body fade-up" style="transition-delay:0.15s;">If you're entering European markets for the first time, the work begins before the media plan. BRIDGE is a structured six-stage process that maps your market entry before significant budget is committed. Many BRIDGE engagements lead naturally into ongoing fractional media leadership once the entry plan is in place.</p>
+    <div class="fade-up" style="transition-delay:0.2s">
+      <a href="bridge-framework.html" class="btn btn-secondary">Learn about the BRIDGE Framework →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRUSTED BY ==================== -->
+<section id="trusted" aria-label="Trusted by">
+  <div class="container">
+    <p class="trusted-label fade-up">Trusted by</p>
+    <div class="logo-strip fade-up" style="transition-delay:0.1s">
+      <div class="logo-item" style="height:52px;">
+        <img src="https://cdn.simpleicons.org/uber" alt="Uber">
+      </div>
+      <div class="logo-item">
+        <img src="https://cdn.simpleicons.org/justeat" alt="Just Eat Takeaway" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Just Eat Takeaway'">
+      </div>
+      <div class="logo-item">
+        <img src="https://www.hzcdn.io/bff/static/vendor/hz-web-ui/mp/assets/tenant--nlnl.414f3d3d.svg" alt="Marktplaats" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Marktplaats'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Microsoft'">
+      </div>
+      <div class="logo-item">
+        <img src="https://cdn.simpleicons.org/unilever" alt="Unilever" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Unilever'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Tata_Comm_logo.svg" alt="Tata Communications" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Tata Communications'">
+      </div>
+      <div class="logo-item">
+        <img src="https://cdn.simpleicons.org/intel" alt="Intel">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Logitech_logo.svg" alt="Logitech" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Logitech'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/PwC_Company_Logo.svg" alt="PwC" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='PwC'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Mastercard'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== ABOUT ==================== -->
+<section id="about" aria-label="About Adam Kanter">
+  <div class="container">
+    <p class="t-label fade-up">About Adam Kanter</p>
+    <h2 class="t-h2 fade-up" style="margin-top:var(--sp-3);transition-delay:0.1s;">20+ years. 60+ countries. Every media dollar accountable.</h2>
+    <p class="about-body fade-up" style="margin-top:var(--sp-4);transition-delay:0.15s;">American national, EU permanent resident, based in Amsterdam. Spent 13 years on the agency side at UM and Initiative managing global accounts including Microsoft, Intel, MasterCard, Unilever, and ExxonMobil. Then moved in-house: Uber EMEA, Just Eat Takeaway, Marktplaats.</p>
+    <p class="about-body fade-up" style="transition-delay:0.18s;">The agency background is the credibility anchor for the in-house work. I know how agencies operate, where margin hides, and what good actually looks like. That's what I bring to every engagement.</p>
+    <div class="credentials-strip fade-up" style="transition-delay:0.2s">
+      Harvard Business School (Uber's inaugural leadership cohort)
+      <span class="dot">·</span>
+      Founded Marketing Breakfast Club, over 1,000 members, 5 cities
+      <span class="dot">·</span>
+      <nobr>BA Economics, University of Michigan</nobr>
+      <span class="dot">·</span>
+      English (native) · Spanish (conversational) · Dutch (A2)
+    </div>
+    <div class="about-avail fade-up" style="transition-delay:0.25s">
+      <span class="avail-dot"></span>
+      Available for select engagements
+    </div>
+    <div class="ai-note fade-up" style="transition-delay:0.28s">
+      I use AI tools systematically across my work: research, strategy, brief writing, and client deliverables, including custom-built workflows for recurring tasks. All outputs are reviewed, validated, and owned by me. AI accelerates my work. It does not replace my judgment.
+    </div>
+  </div>
+</section>
+
+<!-- ==================== CTA ==================== -->
+<section id="cta" aria-label="Start the conversation">
+  <div class="cta-watermark" aria-hidden="true">AA</div>
+  <div class="container">
+    <div class="cta-content">
+      <p class="t-label fade-up">Start the Conversation</p>
+      <h2 class="t-h2 fade-up" style="margin-top:var(--sp-3);transition-delay:0.1s;">Where is your media budget leaving value on the table?</h2>
+      <p class="t-body fade-up" style="transition-delay:0.15s;">45-minute diagnostic call. No charge. No pitch. Just a structured conversation about where the gaps are and whether I can help close them.</p>
+      <div class="fade-up" style="transition-delay:0.2s">
+        <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary" style="font-size:17px;padding:16px 36px;">Book a Diagnostic Call →</a>
+      </div>
+      <p class="cta-secondary fade-up" style="transition-delay:0.25s;">Or reach out directly at <a href="mailto:adam.kanter@aasquaredbv.com">adam.kanter@aasquaredbv.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer aria-label="Footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-wordmark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 92" class="footer-logo" aria-label="AA Squared">
+  <defs>
+    <linearGradient id="f-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="f-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="f-wm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="46" r="34" stroke="url(#f-ring)" stroke-width="2" fill="none"/>
+  <line x1="13"   y1="57"   x2="67"   y2="33"  stroke="#FF8828" stroke-width="4"   stroke-linecap="round"/>
+  <line x1="26.5" y1="38.6" x2="26.5" y2="51"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <line x1="40"   y1="31"   x2="40"   y2="45"  stroke="#FF8828" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="53.5" y1="26.6" x2="53.5" y2="39"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <path d="M13 57 Q40 12 67 33" stroke="url(#f-arc)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="13" cy="57" r="7" fill="#FFAA38"/>
+  <circle cx="67" cy="33" r="7" fill="#FF5F1F"/>
+  <text x="96" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="56" letter-spacing="-2" fill="url(#f-wm)">AA</text>
+  <text x="100" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" letter-spacing="4" fill="rgba(255,255,255,0.65)">SQUARED</text>
+  <text x="100" y="84" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="11" letter-spacing="0.5" fill="rgba(255,255,255,0.75)">Bridging US brands into Europe</text>
+</svg></span>
+      <div class="footer-links">
+        <a href="bridge-framework.html">BRIDGE Framework</a>
+        <a href="mailto:adam.kanter@aasquaredbv.com">adam.kanter@aasquaredbv.com</a>
+        <a href="https://linkedin.com/in/adamskanter" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <span class="footer-copy">Adam Kanter · Fractional &amp; Interim Head of Media · &copy; 2026 AA Squared</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+(function () {
+  'use strict';
+
+  /* ---- NAV SCROLL ---- */
+  const nav = document.getElementById('nav');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* ---- MOBILE NAV ---- */
+  const burger = document.getElementById('burger');
+  const mobileNav = document.getElementById('mobileNav');
+  let mobileOpen = false;
+  burger.addEventListener('click', function () {
+    mobileOpen = !mobileOpen;
+    mobileNav.classList.toggle('open', mobileOpen);
+    burger.setAttribute('aria-expanded', String(mobileOpen));
+    mobileNav.setAttribute('aria-hidden', String(!mobileOpen));
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+  });
+  window.closeMobileNav = function () {
+    mobileOpen = false;
+    mobileNav.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileOpen) closeMobileNav();
+  });
+
+  /* ---- HERO ANIMATION ---- */
+  const headline = document.getElementById('heroHeadline');
+  const headlineText = "Senior media leadership, without the full-time hire.";
+  const words = headlineText.split(' ');
+  headline.innerHTML = words.map(function (w) {
+    return '<span class="word">' + w + '</span>';
+  }).join(' ');
+
+  const wordEls = headline.querySelectorAll('.word');
+  wordEls.forEach(function (el, i) {
+    setTimeout(function () {
+      el.classList.add('visible');
+    }, 120 + i * 55);
+  });
+
+  setTimeout(function () {
+    document.getElementById('heroSubhead').classList.add('visible');
+  }, 120 + words.length * 55 + 80);
+
+  setTimeout(function () {
+    document.getElementById('heroCtas').classList.add('visible');
+  }, 120 + words.length * 55 + 260);
+
+  /* ---- INTERSECTION OBSERVER — FADE UP ---- */
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const fadeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(function (el) { fadeObserver.observe(el); });
+
+  /* ---- OFFERING CARDS STAGGER ---- */
+  const cards = document.querySelectorAll('#offeringsGrid .step-card');
+  const cardObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const idx = Array.from(cards).indexOf(entry.target);
+        setTimeout(function () {
+          entry.target.classList.add('visible');
+        }, idx * 80);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(function (card) { cardObserver.observe(card); });
+
+  /* ---- STATS COUNT-UP ---- */
+  const statEls = document.querySelectorAll('.stat-number[data-target]');
+  let statsAnimated = false;
+
+  function animateStat(el) {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimal || '0', 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const startTime = performance.now();
+
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = eased * target;
+      el.textContent = prefix + value.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const statsSection = document.getElementById('fit');
+  const statsObserver = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !statsAnimated) {
+      statsAnimated = true;
+      statEls.forEach(function (el) { animateStat(el); });
+      statsObserver.disconnect();
+    }
+  }, { threshold: 0.3 });
+  if (statsSection) statsObserver.observe(statsSection);
+
+})();
+</script>
+</body>
+</html>

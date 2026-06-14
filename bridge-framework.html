@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The BRIDGE Framework — AA Squared · Adam Kanter</title>
+<meta name="description" content="A structured market entry framework for US companies expanding into Europe. Six stages. Zero guesswork.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+/* ==================== TOKENS ==================== */
+:root {
+  --cream: #F5F0E8;
+  --cream-dark: #EDE8DC;
+  --orange: #E8720C;
+  --orange-hover: #C45E08;
+  --orange-muted: #F4A05A;
+  --black: #1A1A1A;
+  --ink: #2C2C2C;
+  --ink-light: #6B6560;
+  --white: #FAFAF8;
+  --rule: #D8D2C6;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 32px;
+  --sp-6: 48px;
+  --sp-7: 64px;
+  --sp-8: 80px;
+  --sp-9: 96px;
+  --sp-10: 120px;
+  --radius: 4px;
+  --radius-lg: 12px;
+  --max-w: 1160px;
+  --transition: 200ms ease;
+}
+/* ==================== RESET ==================== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+button { cursor: pointer; font-family: inherit; border: none; background: none; }
+/* ==================== TYPOGRAPHY ==================== */
+.t-display {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.t-h1 { font-size: clamp(36px, 4.5vw, 56px); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; }
+.t-h2 { font-size: clamp(26px, 3vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.t-h3 { font-size: 24px; font-weight: 600; line-height: 1.3; }
+.t-label {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+.t-body-lg { font-size: 22px; font-weight: 400; line-height: 1.65; }
+.t-body { font-size: 18px; font-weight: 400; line-height: 1.7; }
+.t-caption { font-size: 15px; font-weight: 400; }
+/* ==================== LAYOUT ==================== */
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 var(--sp-4); }
+.section { padding: var(--sp-10) 0; }
+/* ==================== BUTTONS ==================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 14px 28px;
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  transition: background var(--transition), color var(--transition), border-color var(--transition), box-shadow var(--transition);
+  white-space: nowrap;
+}
+.btn-primary {
+  background: var(--orange);
+  color: var(--white);
+}
+.btn-primary:hover { background: var(--orange-hover); box-shadow: 0 4px 20px rgba(232,114,12,0.35); }
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid var(--rule);
+}
+.btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+.btn-ghost {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,0.35);
+}
+.btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+/* ==================== NAV ==================== */
+#nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  transition: background var(--transition), box-shadow var(--transition), padding var(--transition);
+  padding: 20px 0;
+}
+#nav.scrolled {
+  background: var(--white);
+  box-shadow: 0 1px 0 var(--rule);
+  padding: 14px 0;
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-4);
+}
+.nav-wordmark {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.nav-logo {
+  height: 80px;
+  width: auto;
+  display: block;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+.nav-links a {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  transition: color var(--transition);
+}
+.nav-links a:hover { color: var(--orange); }
+.nav-links a.active { color: var(--orange); }
+.nav-cta { display: flex; align-items: center; gap: var(--sp-3); }
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--ink);
+  transition: transform var(--transition), opacity var(--transition);
+  border-radius: 2px;
+}
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: var(--white);
+  z-index: 99;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  transition: color var(--transition);
+}
+.mobile-nav a:hover { color: var(--orange); }
+
+/* ==================== HERO ==================== */
+#hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 160px;
+  padding-bottom: var(--sp-10);
+  position: relative;
+  overflow: hidden;
+}
+.hero-ghost {
+  position: absolute;
+  right: -2%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: min(55vw, 680px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: var(--ink);
+  opacity: 0.035;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+}
+.hero-content { position: relative; z-index: 1; max-width: 820px; }
+.hero-eyebrow { margin-bottom: var(--sp-4); }
+.hero-headline { margin-bottom: var(--sp-5); }
+.hero-headline .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.hero-headline .word.visible { opacity: 1; transform: translateY(0); }
+.hero-subhead {
+  color: var(--ink-light);
+  max-width: 620px;
+  margin-bottom: var(--sp-7);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+}
+.hero-subhead.visible { opacity: 1; transform: translateY(0); }
+.hero-ctas {
+  display: flex;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.5s ease 0.65s, transform 0.5s ease 0.65s;
+}
+.hero-ctas.visible { opacity: 1; transform: translateY(0); }
+/* ==================== PROBLEM ==================== */
+#problem {
+  background: var(--black);
+  color: var(--white);
+  padding: var(--sp-10) 0;
+}
+.problem-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+.problem-text .t-label { color: var(--orange-muted); margin-bottom: var(--sp-4); }
+.problem-text .t-h2 { color: var(--white); margin-bottom: var(--sp-4); }
+.problem-text .t-body { color: rgba(250,250,248,0.7); }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-4);
+}
+.stat-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+}
+.stat-number {
+  font-size: clamp(32px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--orange);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: var(--sp-2);
+}
+.stat-label {
+  font-size: 14px;
+  color: rgba(250,250,248,0.6);
+  line-height: 1.4;
+}
+/* ==================== FRAMEWORK OVERVIEW ==================== */
+#framework {
+  background: var(--cream);
+  padding: var(--sp-10) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.section-header { text-align: center; margin-bottom: var(--sp-8); }
+.section-header .t-label { margin-bottom: var(--sp-3); }
+.section-header .t-h2 { margin-bottom: 0; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-4);
+}
+.step-card {
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+  opacity: 0;
+  transform: translateY(32px);
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+.step-card.visible { opacity: 1; transform: translateY(0); transition: background var(--transition), border-color var(--transition), box-shadow var(--transition), transform 0.5s ease, opacity 0.5s ease; }
+.step-card {
+  box-shadow: 0 2px 8px rgba(44,44,44,0.06);
+}
+.step-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 8px 32px rgba(232,114,12,0.14);
+  transform: translateY(-2px);
+}
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+  letter-spacing: -0.02em;
+}
+.card-step-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+.card-name { font-size: 18px; font-weight: 700; color: var(--ink); }
+.card-desc { font-size: 15px; color: var(--ink-light); line-height: 1.6; flex: 1; }
+.card-arrow { font-size: 18px; color: var(--orange); align-self: flex-end; transition: transform var(--transition); }
+.step-card:hover .card-arrow { transform: translateX(4px); }
+/* ==================== STEP DEEP-DIVES ==================== */
+.step-section {
+  padding: var(--sp-10) 0;
+}
+.step-section:nth-child(even) { background: var(--cream); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+.step-section:nth-child(odd) { background: var(--white); }
+.step-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-8);
+  align-items: center;
+}
+.step-section:nth-child(even) .step-inner { direction: rtl; }
+.step-section:nth-child(even) .step-inner > * { direction: ltr; }
+.step-content { display: flex; flex-direction: column; gap: var(--sp-4); }
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.step-badge-letter {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+}
+.step-badge-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+.step-title { font-size: clamp(26px, 3vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.step-body { font-size: 18px; line-height: 1.7; color: var(--ink-light); }
+.deliverables-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: var(--sp-2);
+}
+.deliverables-list { display: flex; flex-direction: column; gap: var(--sp-2); }
+.deliverables-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: 15px;
+  color: var(--ink);
+}
+.deliverables-list li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--orange);
+  flex-shrink: 0;
+  margin-top: 7px;
+}
+.step-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 320px;
+}
+.step-visual svg {
+  width: 100%;
+  max-width: 420px;
+}
+/* ==================== WHO IT'S FOR ==================== */
+#audience {
+  background: var(--cream);
+  padding: var(--sp-10) 0;
+  text-align: center;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+#audience .t-label { margin-bottom: var(--sp-3); }
+#audience .t-h2 { margin-bottom: var(--sp-7); }
+.audience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-5);
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: left;
+}
+.audience-col-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1.5px solid var(--rule);
+}
+.audience-col-label.yes { color: var(--orange); }
+.audience-col-label.no { color: var(--ink-light); }
+.audience-list { display: flex; flex-direction: column; gap: var(--sp-3); }
+.audience-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-2);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+.audience-list li .aud-icon { flex-shrink: 0; margin-top: 2px; font-size: 14px; }
+.audience-list.yes li .aud-icon { color: var(--orange); }
+.audience-list.no li .aud-icon { color: var(--ink-light); }
+/* ==================== ABOUT ==================== */
+#about {
+  background: var(--black);
+  color: var(--white);
+  padding: var(--sp-10) 0;
+  text-align: center;
+}
+#about .t-label { color: var(--orange-muted); margin-bottom: var(--sp-4); }
+#about .t-h2 { color: var(--white); margin-bottom: var(--sp-4); max-width: 600px; margin-left: auto; margin-right: auto; }
+#about .t-body { color: rgba(250,250,248,0.7); max-width: 540px; margin: 0 auto; line-height: 1.75; }
+.trusted-by { margin-top: var(--sp-5); }
+.trusted-label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange-muted); margin-bottom: var(--sp-5); }
+.trusted-names { font-size: 16px; color: rgba(250,250,248,0.5); line-height: 1.8; max-width: 620px; margin: 0 auto; }
+.logo-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-6);
+  max-width: 900px;
+  margin: 0 auto;
+}
+.logo-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  opacity: 0.8;
+  transition: opacity var(--transition);
+}
+.logo-item:hover { opacity: 1; }
+.logo-item img {
+  height: 100%;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+}
+.logo-item.text-logo {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+  height: auto;
+  opacity: 0.6;
+  filter: none;
+}
+.logo-item.text-logo:hover { opacity: 1; }
+.about-avail {
+  margin-top: var(--sp-5);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(250,250,248,0.5);
+}
+.avail-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4CAF50;
+  animation: pulse 2s ease infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+/* ==================== CTA ==================== */
+#cta {
+  padding: var(--sp-10) 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid var(--rule);
+}
+.cta-watermark {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: min(22vw, 240px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  opacity: 0.03;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+}
+.cta-content { position: relative; z-index: 1; }
+.cta-content .t-label { margin-bottom: var(--sp-4); }
+.cta-content .t-h2 { margin-bottom: var(--sp-3); }
+.cta-content .t-body { color: var(--ink-light); margin-bottom: var(--sp-6); }
+.cta-secondary {
+  margin-top: var(--sp-4);
+  font-size: 15px;
+  color: var(--ink-light);
+}
+.cta-secondary a { color: var(--orange); font-weight: 600; transition: color var(--transition); }
+.cta-secondary a:hover { color: var(--orange-hover); }
+/* ==================== FOOTER ==================== */
+footer {
+  background: #141414;
+  padding: var(--sp-6) 0;
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+}
+.footer-wordmark { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 700; color: var(--orange); }
+.footer-logo { height: 80px; width: auto; }
+.footer-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; }
+.footer-links a { font-size: 14px; color: rgba(250,250,248,0.45); transition: color var(--transition); }
+.footer-links a:hover { color: var(--orange-muted); }
+.footer-copy { font-size: 15px; color: rgba(250,250,248,0.6); }
+/* ==================== DIVIDER ==================== */
+.rule { border: none; border-top: 1px solid var(--rule); }
+/* ==================== SCROLL ANIM ==================== */
+.fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+/* ==================== MOBILE ==================== */
+@media (max-width: 900px) {
+  .problem-grid { grid-template-columns: 1fr; gap: var(--sp-7); }
+  .step-inner { grid-template-columns: 1fr; gap: var(--sp-5); }
+  .step-section:nth-child(even) .step-inner { direction: ltr; }
+  .step-visual { min-height: 220px; }
+}
+@media (max-width: 768px) {
+  .nav-links, .nav-cta .btn { display: none; }
+  .nav-burger { display: flex; }
+  .cards-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: var(--sp-3);
+    padding-bottom: var(--sp-3);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .cards-grid::-webkit-scrollbar { display: none; }
+  .step-card {
+    min-width: 280px;
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+  .audience-grid { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .footer-inner { flex-direction: column; align-items: flex-start; }
+  .hero-ghost { font-size: 80vw; right: -10%; }
+}
+@media (max-width: 480px) {
+  :root { --sp-10: 72px; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .hero-ctas { flex-direction: column; align-items: flex-start; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+}
+/* ==================== STEP VISUAL WRAPPERS ==================== */
+.svg-wrap {
+  background: var(--cream);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-5);
+  border: 1px solid var(--rule);
+  width: 100%;
+  max-width: 420px;
+}
+.step-section:nth-child(even) .svg-wrap { background: var(--white); }
+.step-section:nth-child(odd) .svg-wrap { background: var(--cream); }
+</style>
+</head>
+<body>
+<!-- ==================== MOBILE NAV ==================== -->
+<div class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <a href="services.html" onclick="closeMobileNav()">Services</a>
+  <a href="bridge-framework.html" onclick="closeMobileNav()">BRIDGE Framework</a>
+  <a href="mailto:adam.kanter@aasquaredbv.com" onclick="closeMobileNav()">Contact</a>
+  <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary" style="margin-top:16px" onclick="closeMobileNav()">Schedule a Call</a>
+</div>
+<!-- ==================== NAV ==================== -->
+<nav id="nav" role="navigation" aria-label="Main">
+  <div class="container">
+    <div class="nav-inner">
+      <a class="nav-wordmark" href="services.html"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 92" class="nav-logo" aria-label="AA Squared">
+  <defs>
+    <linearGradient id="n-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="n-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="n-wm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="46" r="34" stroke="url(#n-ring)" stroke-width="2" fill="none"/>
+  <line x1="13"   y1="57"   x2="67"   y2="33"  stroke="#FF8828" stroke-width="4"   stroke-linecap="round"/>
+  <line x1="26.5" y1="38.6" x2="26.5" y2="51"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <line x1="40"   y1="31"   x2="40"   y2="45"  stroke="#FF8828" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="53.5" y1="26.6" x2="53.5" y2="39"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <path d="M13 57 Q40 12 67 33" stroke="url(#n-arc)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="13" cy="57" r="7" fill="#FFAA38"/>
+  <circle cx="67" cy="33" r="7" fill="#FF5F1F"/>
+  <text x="96" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="56" letter-spacing="-2" fill="url(#n-wm)">AA</text>
+  <text x="100" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" letter-spacing="4" fill="#C07028">SQUARED</text>
+  <text x="100" y="84" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="11" letter-spacing="0.5" fill="#6A6058">Bridging US brands into Europe</text>
+</svg></a>
+      <ul class="nav-links" role="list">
+        <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="bridge-framework.html">BRIDGE Framework</a></li>
+        <li><a href="mailto:adam.kanter@aasquaredbv.com">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary" style="padding:10px 20px;font-size:14px;">Schedule a Call</a>
+        <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- ==================== HERO ==================== -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-ghost" aria-hidden="true">B</div>
+  <div class="container">
+    <div class="hero-content">
+      <p class="t-label hero-eyebrow fade-up">Market Expansion Advisory</p>
+      <h1 class="t-display hero-headline" id="heroHeadline" aria-label="Europe is 30+ distinct markets. Most US companies budget for one."></h1>
+      <p class="t-body-lg hero-subhead" id="heroSubhead">
+        Most US companies enter Europe the same way: overconfident, underprepared, and six months behind where they think they are. The BRIDGE Framework changes that.
+      </p>
+      <div class="hero-ctas" id="heroCtas">
+        <a href="#framework" class="btn btn-primary">Explore the Framework →</a>
+        <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-secondary">Schedule a Call</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== PROBLEM ==================== -->
+<section id="problem" aria-label="The problem with European expansion">
+  <div class="container">
+    <div class="problem-grid">
+      <div class="problem-text fade-up">
+        <p class="t-label">The Reality</p>
+        <h2 class="t-h2" style="margin-bottom:var(--sp-4);">The decisions that determine your European success are made before the first ad runs.</h2>
+        <p class="t-body">Most US companies enter Europe with an Americanized playbook. They underestimate regulatory fragmentation, overestimate brand awareness, and burn 12–18 months learning what a structured process would have revealed in 8 weeks.</p>
+      </div>
+      <div class="stats-grid fade-up" style="transition-delay:0.15s">
+        <div class="stat-card">
+          <div class="stat-number" data-target="73" data-suffix="%">0%</div>
+          <div class="stat-label">of expansions miss Year 1 targets</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="4.2" data-suffix="×" data-decimal="1">0×</div>
+          <div class="stat-label">higher success rate with structured market entry</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="8" data-suffix=" wks">0 wks</div>
+          <div class="stat-label">to full market readiness with BRIDGE</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="2" data-prefix="$" data-suffix="M+">$0M+</div>
+          <div class="stat-label">avg. cost of a failed launch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== FRAMEWORK OVERVIEW ==================== -->
+<section id="framework" aria-label="The BRIDGE Framework">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="t-label">The Framework</p>
+      <h2 class="t-h2" style="margin-top:var(--sp-3);">Six stages. Zero guesswork.</h2>
+    </div>
+    <div class="cards-grid" id="cardsGrid">
+      <a class="step-card" href="#step-b" aria-label="Benchmark — step 1">
+        <div class="card-icon">B</div>
+        <div>
+          <div class="card-step-label">Step 01</div>
+          <div class="card-name">Benchmark</div>
+        </div>
+        <p class="card-desc">Establish your actual baseline. Not the one you assumed you had. Before creative, before spend.</p>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="step-card" href="#step-r" aria-label="Rank — step 2">
+        <div class="card-icon">R</div>
+        <div>
+          <div class="card-step-label">Step 02</div>
+          <div class="card-name">Rank</div>
+        </div>
+        <p class="card-desc">Defensible, data-backed market sequencing, so you know exactly why you're starting where you are.</p>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="step-card" href="#step-i" aria-label="Identify — step 3">
+        <div class="card-icon">I</div>
+        <div>
+          <div class="card-step-label">Step 03</div>
+          <div class="card-name">Identify</div>
+        </div>
+        <p class="card-desc">Map the channels that actually reach your target consumer in each priority market, and at what cost.</p>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="step-card" href="#step-d" aria-label="Design — step 4">
+        <div class="card-icon">D</div>
+        <div>
+          <div class="card-step-label">Step 04</div>
+          <div class="card-name">Design</div>
+        </div>
+        <p class="card-desc">Structure your rollout so each phase builds on the last: a compounding evidence base, not a gamble.</p>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="step-card" href="#step-g" aria-label="Govern — step 5">
+        <div class="card-icon">G</div>
+        <div>
+          <div class="card-step-label">Step 05</div>
+          <div class="card-name">Govern</div>
+        </div>
+        <p class="card-desc">Define how you structure, brief, and manage agency partners, with clear accountability from day one.</p>
+        <span class="card-arrow">→</span>
+      </a>
+      <a class="step-card" href="#step-e" aria-label="Evaluate — step 6">
+        <div class="card-icon">E</div>
+        <div>
+          <div class="card-step-label">Step 06</div>
+          <div class="card-name">Evaluate</div>
+        </div>
+        <p class="card-desc">Pressure-test your measurement stack before it drives budget decisions in markets it wasn't built for.</p>
+        <span class="card-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+<!-- ==================== STEP: BENCHMARK ==================== -->
+<section class="step-section" id="step-b" aria-label="Step 1: Benchmark">
+  <div class="container">
+    <div class="step-inner">
+      <div class="step-content fade-up">
+        <div class="step-badge">
+          <div class="step-badge-letter">B</div>
+          <span class="step-badge-label">Step 01 — Benchmark</span>
+        </div>
+        <h2 class="step-title">Know what you don't know.</h2>
+        <p class="step-body">Before you ship a single creative asset or place a single Euro of media spend, you need to know what you don't know. Consumer expectations, platform behavior, brand awareness levels, and competitive intensity all vary dramatically across European markets. What your US performance data tells you about CAC, LTV, and conversion rates may be directionally useless on day one in Berlin or Barcelona. This step establishes your actual baseline. Not the one you assumed you had.</p>
+        <div>
+          <div class="deliverables-label">Deliverables</div>
+          <ul class="deliverables-list">
+            <li>Competitive landscape audit</li>
+            <li>US vs. EU assumption gap analysis</li>
+            <li>Baseline performance benchmarks</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual fade-up" style="transition-delay:0.1s">
+        <div class="svg-wrap">
+          <!-- Benchmark SVG: comparison bars / grid -->
+          <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Grid lines -->
+            <line x1="60" y1="20" x2="60" y2="240" stroke="#D8D2C6" stroke-width="1"/>
+            <line x1="60" y1="240" x2="360" y2="240" stroke="#D8D2C6" stroke-width="1"/>
+            <line x1="60" y1="180" x2="360" y2="180" stroke="#D8D2C6" stroke-width="0.5" stroke-dasharray="4 4"/>
+            <line x1="60" y1="120" x2="360" y2="120" stroke="#D8D2C6" stroke-width="0.5" stroke-dasharray="4 4"/>
+            <line x1="60" y1="60" x2="360" y2="60" stroke="#D8D2C6" stroke-width="0.5" stroke-dasharray="4 4"/>
+            <!-- Y-axis labels -->
+            <text x="50" y="244" fill="#6B6560" font-size="11" text-anchor="end" font-family="DM Sans, sans-serif">0</text>
+            <text x="50" y="184" fill="#6B6560" font-size="11" text-anchor="end" font-family="DM Sans, sans-serif">25</text>
+            <text x="50" y="124" fill="#6B6560" font-size="11" text-anchor="end" font-family="DM Sans, sans-serif">50</text>
+            <text x="50" y="64" fill="#6B6560" font-size="11" text-anchor="end" font-family="DM Sans, sans-serif">75</text>
+            <!-- US bars (muted) -->
+            <rect x="80" y="100" width="36" height="140" rx="3" fill="#D8D2C6"/>
+            <rect x="160" y="60" width="36" height="180" rx="3" fill="#D8D2C6"/>
+            <rect x="240" y="140" width="36" height="100" rx="3" fill="#D8D2C6"/>
+            <rect x="320" y="80" width="36" height="160" rx="3" fill="#D8D2C6"/>
+            <!-- EU bars (orange) -->
+            <rect x="118" y="148" width="36" height="92" rx="3" fill="#E8720C" opacity="0.9"/>
+            <rect x="198" y="100" width="36" height="140" rx="3" fill="#E8720C" opacity="0.9"/>
+            <rect x="278" y="170" width="36" height="70" rx="3" fill="#E8720C" opacity="0.9"/>
+            <rect x="358" y="120" width="36" height="120" rx="3" fill="#E8720C" opacity="0.9"/>
+            <!-- X labels -->
+            <text x="107" y="260" fill="#6B6560" font-size="11" text-anchor="middle" font-family="DM Sans, sans-serif">CAC</text>
+            <text x="187" y="260" fill="#6B6560" font-size="11" text-anchor="middle" font-family="DM Sans, sans-serif">LTV</text>
+            <text x="267" y="260" fill="#6B6560" font-size="11" text-anchor="middle" font-family="DM Sans, sans-serif">CVR</text>
+            <text x="347" y="260" fill="#6B6560" font-size="11" text-anchor="middle" font-family="DM Sans, sans-serif">AOV</text>
+            <!-- Legend -->
+            <rect x="60" y="278" width="12" height="12" rx="2" fill="#D8D2C6"/>
+            <text x="76" y="289" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">US Assumption</text>
+            <rect x="180" y="278" width="12" height="12" rx="2" fill="#E8720C"/>
+            <text x="196" y="289" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">EU Reality</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== STEP: RANK ==================== -->
+<section class="step-section" id="step-r" aria-label="Step 2: Rank">
+  <div class="container">
+    <div class="step-inner">
+      <div class="step-content fade-up">
+        <div class="step-badge">
+          <div class="step-badge-letter">R</div>
+          <span class="step-badge-label">Step 02 — Rank</span>
+        </div>
+        <h2 class="step-title">Not all markets deserve your attention first.</h2>
+        <p class="step-body">Not all European markets are created equal, and not all of them deserve your attention first. Market prioritization should be driven by the intersection of addressable audience size, category penetration, media cost structures, and your ability to compete given existing local players. This step gives you a defensible, data-backed sequencing rationale, so you can explain to your board exactly why you're starting in market X instead of chasing every flag on the map.</p>
+        <div>
+          <div class="deliverables-label">Deliverables</div>
+          <ul class="deliverables-list">
+            <li>Market scoring matrix</li>
+            <li>Prioritized entry sequence</li>
+            <li>Board-ready rationale</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual fade-up" style="transition-delay:0.1s">
+        <div class="svg-wrap">
+          <!-- Rank SVG: ordered list / scoring matrix -->
+          <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Header row -->
+            <rect x="20" y="20" width="340" height="32" rx="4" fill="#E8720C" opacity="0.12"/>
+            <text x="36" y="41" fill="#E8720C" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">MARKET</text>
+            <text x="160" y="41" fill="#E8720C" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">SCORE</text>
+            <text x="240" y="41" fill="#E8720C" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">PRIORITY</text>
+            <text x="330" y="41" fill="#E8720C" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">SEQ</text>
+            <!-- Row 1 — highlight -->
+            <rect x="20" y="56" width="340" height="36" rx="4" fill="#E8720C" opacity="0.08"/>
+            <circle cx="31" cy="74" r="9" fill="#E8720C"/>
+            <text x="31" y="78" fill="white" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">1</text>
+            <text x="50" y="79" fill="#2C2C2C" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">Germany</text>
+            <!-- Score bar -->
+            <rect x="145" y="67" width="70" height="10" rx="5" fill="#EDE8DC"/>
+            <rect x="145" y="67" width="63" height="10" rx="5" fill="#E8720C"/>
+            <text x="220" y="77" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">90</text>
+            <text x="240" y="79" fill="#E8720C" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">High</text>
+            <text x="334" y="79" fill="#E8720C" font-size="14" font-weight="700" font-family="DM Sans, sans-serif">→1</text>
+            <!-- Row 2 -->
+            <rect x="20" y="96" width="340" height="36" rx="4" fill="transparent"/>
+            <circle cx="31" cy="114" r="9" fill="#F4A05A"/>
+            <text x="31" y="118" fill="white" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">2</text>
+            <text x="50" y="119" fill="#2C2C2C" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">Netherlands</text>
+            <rect x="145" y="107" width="70" height="10" rx="5" fill="#EDE8DC"/>
+            <rect x="145" y="107" width="52" height="10" rx="5" fill="#F4A05A"/>
+            <text x="220" y="117" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">74</text>
+            <text x="240" y="119" fill="#F4A05A" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">High</text>
+            <text x="334" y="119" fill="#6B6560" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">→2</text>
+            <!-- Row 3 -->
+            <rect x="20" y="136" width="340" height="36" rx="4" fill="transparent"/>
+            <circle cx="31" cy="154" r="9" fill="#D8D2C6"/>
+            <text x="31" y="158" fill="#6B6560" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">3</text>
+            <text x="50" y="159" fill="#2C2C2C" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">France</text>
+            <rect x="145" y="147" width="70" height="10" rx="5" fill="#EDE8DC"/>
+            <rect x="145" y="147" width="44" height="10" rx="5" fill="#D8D2C6"/>
+            <text x="220" y="157" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">63</text>
+            <text x="240" y="159" fill="#6B6560" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">Mid</text>
+            <text x="334" y="159" fill="#6B6560" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">→3</text>
+            <!-- Row 4 -->
+            <rect x="20" y="176" width="340" height="36" rx="4" fill="transparent"/>
+            <circle cx="31" cy="194" r="9" fill="#D8D2C6"/>
+            <text x="31" y="198" fill="#6B6560" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">4</text>
+            <text x="50" y="199" fill="#2C2C2C" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">Spain</text>
+            <rect x="145" y="187" width="70" height="10" rx="5" fill="#EDE8DC"/>
+            <rect x="145" y="187" width="35" height="10" rx="5" fill="#D8D2C6"/>
+            <text x="220" y="197" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">50</text>
+            <text x="240" y="199" fill="#6B6560" font-size="12" font-weight="600" font-family="DM Sans, sans-serif">Mid</text>
+            <text x="334" y="199" fill="#6B6560" font-size="14" font-weight="600" font-family="DM Sans, sans-serif">→4</text>
+            <!-- Divider lines -->
+            <line x1="20" y1="92" x2="360" y2="92" stroke="#D8D2C6" stroke-width="0.5"/>
+            <line x1="20" y1="132" x2="360" y2="132" stroke="#D8D2C6" stroke-width="0.5"/>
+            <line x1="20" y1="172" x2="360" y2="172" stroke="#D8D2C6" stroke-width="0.5"/>
+            <line x1="20" y1="212" x2="360" y2="212" stroke="#D8D2C6" stroke-width="0.5"/>
+            <!-- Axis criteria -->
+            <text x="20" y="240" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">Scored on: audience size · penetration · media costs · competitive density</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== STEP: IDENTIFY ==================== -->
+<section class="step-section" id="step-i" aria-label="Step 3: Identify">
+  <div class="container">
+    <div class="step-inner">
+      <div class="step-content fade-up">
+        <div class="step-badge">
+          <div class="step-badge-letter">I</div>
+          <span class="step-badge-label">Step 03 — Identify</span>
+        </div>
+        <h2 class="step-title">Map where your audience actually lives.</h2>
+        <p class="step-body">European channel dynamics are not a scaled copy of the US. TikTok penetration varies wildly by country. Google Shopping behaves differently across markets. Influencer economics, affiliate ecosystems, and streaming inventory all shift. Before you commit budget or agency relationships, you need a clear map of which channels actually reach your target consumer in each priority market, and at what cost.</p>
+        <div>
+          <div class="deliverables-label">Deliverables</div>
+          <ul class="deliverables-list">
+            <li>Channel landscape map by market</li>
+            <li>Cost benchmark analysis</li>
+            <li>Media mix recommendation</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual fade-up" style="transition-delay:0.1s">
+        <div class="svg-wrap">
+          <!-- Identify SVG: channel network / map -->
+          <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Center node -->
+            <circle cx="190" cy="150" r="28" fill="#E8720C"/>
+            <text x="190" y="146" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">YOUR</text>
+            <text x="190" y="159" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">BRAND</text>
+            <!-- Connecting lines -->
+            <line x1="190" y1="122" x2="190" y2="60" stroke="#E8720C" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+            <line x1="165" y1="130" x2="95" y2="95" stroke="#E8720C" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+            <line x1="163" y1="155" x2="80" y2="175" stroke="#E8720C" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.4"/>
+            <line x1="163" y1="168" x2="90" y2="230" stroke="#D8D2C6" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.4"/>
+            <line x1="215" y1="130" x2="285" y2="90" stroke="#E8720C" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.5"/>
+            <line x1="218" y1="155" x2="300" y2="165" stroke="#E8720C" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.4"/>
+            <line x1="210" y1="170" x2="275" y2="230" stroke="#D8D2C6" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.3"/>
+            <!-- Channel nodes — active -->
+            <circle cx="190" cy="44" r="22" fill="#F4A05A" opacity="0.9"/>
+            <text x="190" y="49" fill="white" font-size="10" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">Paid</text>
+            <text x="190" y="40" fill="white" font-size="9" text-anchor="middle" font-family="DM Sans, sans-serif">Social</text>
+            <circle cx="80" cy="80" r="22" fill="#E8720C" opacity="0.9"/>
+            <text x="80" y="85" fill="white" font-size="9" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">Search</text>
+            <circle cx="55" cy="175" r="22" fill="#F4A05A" opacity="0.8"/>
+            <text x="55" y="180" fill="white" font-size="9" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">Influencer</text>
+            <circle cx="300" cy="72" r="22" fill="#E8720C" opacity="0.85"/>
+            <text x="300" y="77" fill="white" font-size="9" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">Display</text>
+            <circle cx="318" cy="168" r="22" fill="#F4A05A" opacity="0.8"/>
+            <text x="318" y="173" fill="white" font-size="9" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">Streaming</text>
+            <!-- Inactive nodes -->
+            <circle cx="80" cy="238" r="18" fill="none" stroke="#D8D2C6" stroke-width="1.5"/>
+            <text x="80" y="243" fill="#D8D2C6" font-size="9" text-anchor="middle" font-family="DM Sans, sans-serif">Affiliate</text>
+            <circle cx="288" cy="238" r="18" fill="none" stroke="#D8D2C6" stroke-width="1.5"/>
+            <text x="288" y="243" fill="#D8D2C6" font-size="9" text-anchor="middle" font-family="DM Sans, sans-serif">OOH</text>
+            <!-- Legend -->
+            <circle cx="25" cy="278" r="6" fill="#E8720C"/>
+            <text x="36" y="282" fill="#6B6560" font-size="10" font-family="DM Sans, sans-serif">Priority channel</text>
+            <circle cx="140" cy="278" r="6" fill="none" stroke="#D8D2C6" stroke-width="1.5"/>
+            <text x="151" y="282" fill="#6B6560" font-size="10" font-family="DM Sans, sans-serif">Deprioritized</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== STEP: DESIGN ==================== -->
+<section class="step-section" id="step-d" aria-label="Step 4: Design">
+  <div class="container">
+    <div class="step-inner">
+      <div class="step-content fade-up">
+        <div class="step-badge">
+          <div class="step-badge-letter">D</div>
+          <span class="step-badge-label">Step 04 — Design</span>
+        </div>
+        <h2 class="step-title">Structure that compounds, not a launch that evaporates.</h2>
+        <p class="step-body">Speed without structure is how you burn a European budget in 90 days and have nothing to show for it. A well-designed rollout sequences markets and channels so that each phase generates learnings that inform the next one. You're not launching everywhere at once. You're building a compounding evidence base that increases your probability of success as you scale.</p>
+        <div>
+          <div class="deliverables-label">Deliverables</div>
+          <ul class="deliverables-list">
+            <li>Phased rollout blueprint</li>
+            <li>Learning agenda</li>
+            <li>Budget sequencing model</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual fade-up" style="transition-delay:0.1s">
+        <div class="svg-wrap">
+          <!-- Design SVG: layered phases / timeline -->
+          <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Timeline backbone -->
+            <line x1="40" y1="150" x2="340" y2="150" stroke="#D8D2C6" stroke-width="2"/>
+            <!-- Phase 1 -->
+            <rect x="40" y="80" width="80" height="130" rx="6" fill="#E8720C" opacity="0.15"/>
+            <rect x="40" y="80" width="80" height="4" rx="2" fill="#E8720C"/>
+            <text x="80" y="108" fill="#E8720C" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">PHASE 1</text>
+            <text x="80" y="124" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Weeks 1–3</text>
+            <text x="80" y="140" fill="#2C2C2C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">1 Market</text>
+            <text x="80" y="155" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">DE</text>
+            <text x="80" y="172" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">2 Channels</text>
+            <text x="80" y="192" fill="#E8720C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Learn</text>
+            <!-- Arrow -->
+            <path d="M124 150 L136 144 L136 156 Z" fill="#E8720C" opacity="0.6"/>
+            <!-- Phase 2 -->
+            <rect x="140" y="60" width="90" height="150" rx="6" fill="#E8720C" opacity="0.12"/>
+            <rect x="140" y="60" width="90" height="4" rx="2" fill="#E8720C" opacity="0.7"/>
+            <text x="185" y="88" fill="#E8720C" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">PHASE 2</text>
+            <text x="185" y="104" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Weeks 4–6</text>
+            <text x="185" y="120" fill="#2C2C2C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">+2 Markets</text>
+            <text x="185" y="135" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">DE + NL + FR</text>
+            <text x="185" y="152" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">4 Channels</text>
+            <text x="185" y="175" fill="#E8720C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Optimise</text>
+            <!-- Arrow -->
+            <path d="M235 150 L247 144 L247 156 Z" fill="#E8720C" opacity="0.6"/>
+            <!-- Phase 3 -->
+            <rect x="250" y="40" width="90" height="170" rx="6" fill="#E8720C" opacity="0.09"/>
+            <rect x="250" y="40" width="90" height="4" rx="2" fill="#E8720C" opacity="0.5"/>
+            <text x="295" y="68" fill="#E8720C" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">PHASE 3</text>
+            <text x="295" y="84" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Weeks 7–8</text>
+            <text x="295" y="100" fill="#2C2C2C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Full Rollout</text>
+            <text x="295" y="115" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">5+ Markets</text>
+            <text x="295" y="132" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Full Mix</text>
+            <text x="295" y="155" fill="#E8720C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Scale</text>
+            <!-- Budget bar -->
+            <text x="40" y="248" fill="#6B6560" font-size="10" font-family="DM Sans, sans-serif">Budget allocation</text>
+            <rect x="40" y="256" width="80" height="8" rx="4" fill="#E8720C" opacity="0.5"/>
+            <rect x="140" y="256" width="90" height="8" rx="4" fill="#E8720C" opacity="0.7"/>
+            <rect x="250" y="256" width="90" height="8" rx="4" fill="#E8720C"/>
+            <text x="80" y="278" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">20%</text>
+            <text x="185" y="278" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">35%</text>
+            <text x="295" y="278" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">45%</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== STEP: GOVERN ==================== -->
+<section class="step-section" id="step-g" aria-label="Step 5: Govern">
+  <div class="container">
+    <div class="step-inner">
+      <div class="step-content fade-up">
+        <div class="step-badge">
+          <div class="step-badge-letter">G</div>
+          <span class="step-badge-label">Step 05 — Govern</span>
+        </div>
+        <h2 class="step-title">Accountability before activity.</h2>
+        <p class="step-body">European expansion often means new agency relationships: local buyers, regional networks, specialist partners. Without clear governance, you end up with fragmented accountability, misaligned incentives, and reporting that doesn't connect back to your business objectives. This step defines how you structure, brief, and manage agency partners so that everyone is pulling in the same direction from day one.</p>
+        <div>
+          <div class="deliverables-label">Deliverables</div>
+          <ul class="deliverables-list">
+            <li>Agency governance model</li>
+            <li>Briefing templates</li>
+            <li>Accountability framework</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual fade-up" style="transition-delay:0.1s">
+        <div class="svg-wrap">
+          <!-- Govern SVG: org structure nodes -->
+          <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Top node — client -->
+            <rect x="130" y="20" width="120" height="40" rx="6" fill="#E8720C"/>
+            <text x="190" y="36" fill="white" font-size="12" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">CLIENT</text>
+            <text x="190" y="51" fill="rgba(255,255,255,0.8)" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Head of Media</text>
+            <!-- Connecting lines -->
+            <line x1="190" y1="60" x2="190" y2="90" stroke="#E8720C" stroke-width="1.5"/>
+            <!-- Mid node -->
+            <rect x="130" y="90" width="120" height="40" rx="6" fill="#F4A05A" opacity="0.9"/>
+            <text x="190" y="106" fill="white" font-size="11" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">LEAD AGENCY</text>
+            <text x="190" y="121" fill="rgba(255,255,255,0.85)" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Regional Network</text>
+            <!-- Branch lines -->
+            <line x1="190" y1="130" x2="190" y2="155" stroke="#D8D2C6" stroke-width="1.5"/>
+            <line x1="190" y1="155" x2="70" y2="155" stroke="#D8D2C6" stroke-width="1.5"/>
+            <line x1="190" y1="155" x2="310" y2="155" stroke="#D8D2C6" stroke-width="1.5"/>
+            <line x1="70" y1="155" x2="70" y2="175" stroke="#D8D2C6" stroke-width="1.5"/>
+            <line x1="190" y1="155" x2="190" y2="175" stroke="#D8D2C6" stroke-width="1.5"/>
+            <line x1="310" y1="155" x2="310" y2="175" stroke="#D8D2C6" stroke-width="1.5"/>
+            <!-- Leaf nodes -->
+            <rect x="22" y="175" width="96" height="36" rx="5" fill="var(--cream-dark)" stroke="#D8D2C6" stroke-width="1"/>
+            <text x="70" y="191" fill="#2C2C2C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">PAID SOCIAL</text>
+            <text x="70" y="204" fill="#6B6560" font-size="9" text-anchor="middle" font-family="DM Sans, sans-serif">DE / NL / FR</text>
+            <rect x="142" y="175" width="96" height="36" rx="5" fill="var(--cream-dark)" stroke="#D8D2C6" stroke-width="1"/>
+            <text x="190" y="191" fill="#2C2C2C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">SEARCH</text>
+            <text x="190" y="204" fill="#6B6560" font-size="9" text-anchor="middle" font-family="DM Sans, sans-serif">All markets</text>
+            <rect x="262" y="175" width="96" height="36" rx="5" fill="var(--cream-dark)" stroke="#D8D2C6" stroke-width="1"/>
+            <text x="310" y="191" fill="#2C2C2C" font-size="10" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">AFFILIATES</text>
+            <text x="310" y="204" fill="#6B6560" font-size="9" text-anchor="middle" font-family="DM Sans, sans-serif">ES / IT</text>
+            <!-- Accountability legend -->
+            <line x1="20" y1="240" x2="360" y2="240" stroke="#D8D2C6" stroke-width="0.5"/>
+            <text x="20" y="260" fill="#6B6560" font-size="11" font-family="DM Sans, sans-serif">Governance principles</text>
+            <rect x="20" y="268" width="100" height="20" rx="3" fill="rgba(232,114,12,0.1)" stroke="#E8720C" stroke-width="0.5"/>
+            <text x="70" y="281" fill="#E8720C" font-size="9" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Single briefer</text>
+            <rect x="128" y="268" width="100" height="20" rx="3" fill="rgba(232,114,12,0.1)" stroke="#E8720C" stroke-width="0.5"/>
+            <text x="178" y="281" fill="#E8720C" font-size="9" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Unified reporting</text>
+            <rect x="236" y="268" width="120" height="20" rx="3" fill="rgba(232,114,12,0.1)" stroke="#E8720C" stroke-width="0.5"/>
+            <text x="296" y="281" fill="#E8720C" font-size="9" font-weight="600" text-anchor="middle" font-family="DM Sans, sans-serif">Clear accountability</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== STEP: EVALUATE ==================== -->
+<section class="step-section" id="step-e" aria-label="Step 6: Evaluate">
+  <div class="container">
+    <div class="step-inner">
+      <div class="step-content fade-up">
+        <div class="step-badge">
+          <div class="step-badge-letter">E</div>
+          <span class="step-badge-label">Step 06 — Evaluate</span>
+        </div>
+        <h2 class="step-title">Measure what actually happened, not what you hoped did.</h2>
+        <p class="step-body">Your US measurement stack may not translate. Cookie consent laws, data residency requirements, and platform-level tracking limitations all affect your ability to measure performance across European markets. Attribution models that work in the US need to be pressure-tested before they become the basis for budget decisions in markets with fundamentally different data environments.</p>
+        <div>
+          <div class="deliverables-label">Deliverables</div>
+          <ul class="deliverables-list">
+            <li>Measurement architecture</li>
+            <li>Attribution model review</li>
+            <li>European-compliant analytics setup</li>
+          </ul>
+        </div>
+      </div>
+      <div class="step-visual fade-up" style="transition-delay:0.1s">
+        <div class="svg-wrap">
+          <!-- Evaluate SVG: measurement dashboard lines -->
+          <svg viewBox="0 0 380 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <!-- Dashboard frame -->
+            <rect x="20" y="16" width="340" height="180" rx="8" fill="var(--cream-dark)" stroke="#D8D2C6" stroke-width="1"/>
+            <!-- Header bar -->
+            <rect x="20" y="16" width="340" height="32" rx="8" fill="#1A1A1A"/>
+            <rect x="20" y="36" width="340" height="12" fill="#1A1A1A"/>
+            <circle cx="40" cy="32" r="5" fill="#FF5F57"/>
+            <circle cx="57" cy="32" r="5" fill="#FFBD2E"/>
+            <circle cx="74" cy="32" r="5" fill="#28C840"/>
+            <text x="200" y="36" fill="rgba(255,255,255,0.6)" font-size="11" text-anchor="middle" font-family="DM Sans, sans-serif">EU Analytics Dashboard</text>
+            <!-- Chart area -->
+            <!-- Spline 1 — solid (accurate) -->
+            <path d="M40 160 C70 140 100 130 130 120 C160 110 190 115 220 105 C250 95 280 80 320 72" stroke="#E8720C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <!-- Area fill for spline 1 -->
+            <path d="M40 160 C70 140 100 130 130 120 C160 110 190 115 220 105 C250 95 280 80 320 72 L320 175 L40 175 Z" fill="#E8720C" opacity="0.07"/>
+            <!-- Spline 2 — dashed (attributed) -->
+            <path d="M40 165 C70 150 100 145 130 140 C160 135 190 138 220 128 C250 118 280 100 320 90" stroke="#F4A05A" stroke-width="2" fill="none" stroke-dasharray="6 3" stroke-linecap="round"/>
+            <!-- Data points on spline 1 -->
+            <circle cx="130" cy="120" r="4" fill="#E8720C"/>
+            <circle cx="220" cy="105" r="4" fill="#E8720C"/>
+            <circle cx="320" cy="72" r="4" fill="#E8720C"/>
+            <!-- Grid lines inside chart -->
+            <line x1="40" y1="175" x2="340" y2="175" stroke="#D8D2C6" stroke-width="0.5"/>
+            <line x1="40" y1="145" x2="340" y2="145" stroke="#D8D2C6" stroke-width="0.5" stroke-dasharray="3 3"/>
+            <line x1="40" y1="115" x2="340" y2="115" stroke="#D8D2C6" stroke-width="0.5" stroke-dasharray="3 3"/>
+            <line x1="40" y1="85" x2="340" y2="85" stroke="#D8D2C6" stroke-width="0.5" stroke-dasharray="3 3"/>
+            <!-- GDPR annotation -->
+            <rect x="145" y="55" width="90" height="28" rx="4" fill="#1A1A1A"/>
+            <text x="190" y="68" fill="white" font-size="9" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">⚠ GDPR Gap</text>
+            <text x="190" y="79" fill="rgba(255,255,255,0.7)" font-size="8" text-anchor="middle" font-family="DM Sans, sans-serif">Attribution delta: 22%</text>
+            <line x1="190" y1="83" x2="220" y2="105" stroke="#1A1A1A" stroke-width="1"/>
+            <!-- Metric pills -->
+            <rect x="20" y="210" width="96" height="42" rx="6" fill="rgba(232,114,12,0.08)" stroke="#E8720C" stroke-width="0.5"/>
+            <text x="68" y="228" fill="#E8720C" font-size="14" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">–22%</text>
+            <text x="68" y="244" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Attribution gap</text>
+            <rect x="124" y="210" width="96" height="42" rx="6" fill="rgba(232,114,12,0.08)" stroke="#E8720C" stroke-width="0.5"/>
+            <text x="172" y="228" fill="#E8720C" font-size="14" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">3 Laws</text>
+            <text x="172" y="244" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Data residency</text>
+            <rect x="228" y="210" width="112" height="42" rx="6" fill="rgba(232,114,12,0.08)" stroke="#E8720C" stroke-width="0.5"/>
+            <text x="284" y="228" fill="#E8720C" font-size="14" font-weight="700" text-anchor="middle" font-family="DM Sans, sans-serif">Rebuilt</text>
+            <text x="284" y="244" fill="#6B6560" font-size="10" text-anchor="middle" font-family="DM Sans, sans-serif">Measurement stack</text>
+            <!-- Legend -->
+            <line x1="20" y1="265" x2="40" y2="265" stroke="#E8720C" stroke-width="2.5"/>
+            <text x="45" y="269" fill="#6B6560" font-size="10" font-family="DM Sans, sans-serif">Actual revenue</text>
+            <line x1="155" y1="265" x2="175" y2="265" stroke="#F4A05A" stroke-width="2" stroke-dasharray="5 3"/>
+            <text x="180" y="269" fill="#6B6560" font-size="10" font-family="DM Sans, sans-serif">Platform-reported</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== AUDIENCE ==================== -->
+<section id="audience" aria-label="Who this is for">
+  <div class="container">
+    <p class="t-label fade-up">Who It's For</p>
+    <h2 class="t-h2 fade-up" style="margin-top:var(--sp-3);transition-delay:0.1s;">Built for the Team That Can't Afford to Figure It Out the Hard Way</h2>
+    <p class="t-body fade-up" style="color:var(--ink-light);max-width:500px;margin:var(--sp-4) auto var(--sp-7);transition-delay:0.15s;">US B2C companies at Series B through D, building toward their first real international presence.</p>
+    <div class="audience-grid fade-up" style="transition-delay:0.2s">
+      <div>
+        <div class="audience-col-label yes">This is for you if…</div>
+        <ul class="audience-list yes">
+          <li><span class="aud-icon">✓</span> Europe is on your board's 12-month roadmap</li>
+          <li><span class="aud-icon">✓</span> You've inherited an expansion brief and need a structured view</li>
+          <li><span class="aud-icon">✓</span> A European pilot stalled and you're not sure why</li>
+          <li><span class="aud-icon">✓</span> You want to pressure-test assumptions before committing budget</li>
+        </ul>
+      </div>
+      <div>
+        <div class="audience-col-label no">This is not for you if…</div>
+        <ul class="audience-list no">
+          <li><span class="aud-icon">✕</span> You haven't found product-market fit in the US yet</li>
+          <li><span class="aud-icon">✕</span> You need a media buyer, not a strategist</li>
+          <li><span class="aud-icon">✕</span> You're looking to validate a decision that's already been made</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== TRUSTED ==================== -->
+<section id="trusted" aria-label="Trusted by" style="background:var(--white);padding:var(--sp-9) 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);text-align:center;">
+  <div class="container">
+    <p class="trusted-label fade-up" style="font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink-light);margin-bottom:var(--sp-5);">Built from experience at</p>
+    <div class="logo-strip fade-up" style="transition-delay:0.1s">
+      <div class="logo-item" style="height:52px;">
+        <img src="https://cdn.simpleicons.org/uber" alt="Uber">
+      </div>
+      <div class="logo-item">
+        <img src="https://cdn.simpleicons.org/justeat" alt="Just Eat Takeaway" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Just Eat Takeaway'">
+      </div>
+      <div class="logo-item">
+        <img src="https://www.hzcdn.io/bff/static/vendor/hz-web-ui/mp/assets/tenant--nlnl.414f3d3d.svg" alt="Marktplaats" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Marktplaats'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Microsoft'">
+      </div>
+      <div class="logo-item">
+        <img src="https://cdn.simpleicons.org/unilever" alt="Unilever" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Unilever'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/57/Tata_Comm_logo.svg" alt="Tata Communications" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Tata Communications'">
+      </div>
+      <div class="logo-item">
+        <img src="https://cdn.simpleicons.org/intel" alt="Intel">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/1/17/Logitech_logo.svg" alt="Logitech" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Logitech'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/c3/PwC_Company_Logo.svg" alt="PwC" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='PwC'">
+      </div>
+      <div class="logo-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Mastercard_2019_logo.svg" alt="Mastercard" onerror="this.parentElement.classList.add('text-logo');this.parentElement.innerHTML='Mastercard'">
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ==================== ABOUT ==================== -->
+<section id="about" aria-label="About Adam Kanter">
+  <div class="container">
+    <p class="t-label fade-up">About the Advisor</p>
+    <h2 class="t-h2 fade-up" style="margin-top:var(--sp-3);transition-delay:0.1s;">Senior media leadership for companies building toward what's next.</h2>
+    <p class="t-body fade-up" style="transition-delay:0.15s;">Adam Kanter is a Fractional &amp; Interim Head of Media with a track record leading paid media strategy for global brands across European markets. He has built and led media functions at some of the world's most demanding organisations, and now brings that experience directly to growth-stage companies navigating international expansion.</p>
+    <div class="about-avail fade-up" style="transition-delay:0.25s">
+      <span class="avail-dot"></span>
+      Available for select engagements
+    </div>
+  </div>
+</section>
+<!-- ==================== CTA ==================== -->
+<section id="cta" aria-label="Start the conversation">
+  <div class="cta-watermark" aria-hidden="true">BRIDGE</div>
+  <div class="container">
+    <div class="cta-content">
+      <p class="t-label fade-up">Start the Conversation</p>
+      <h2 class="t-h2 fade-up" style="margin-top:var(--sp-3);transition-delay:0.1s;">Ready to map your path into Europe?</h2>
+      <p class="t-body fade-up" style="transition-delay:0.15s;">If Europe is on your roadmap, this is where the work starts.</p>
+      <div class="fade-up" style="transition-delay:0.2s">
+        <a href="mailto:adam.kanter@aasquaredbv.com" class="btn btn-primary" style="font-size:17px;padding:16px 36px;">Schedule a Call →</a>
+      </div>
+      <p class="cta-secondary fade-up" style="transition-delay:0.25s;">Or reach out directly at <a href="mailto:adam.kanter@aasquaredbv.com">adam.kanter@aasquaredbv.com</a></p>
+    </div>
+  </div>
+</section>
+<!-- ==================== FOOTER ==================== -->
+<footer aria-label="Footer">
+  <div class="container">
+    <div class="footer-inner">
+      <span class="footer-wordmark"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 92" class="footer-logo" aria-label="AA Squared">
+  <defs>
+    <linearGradient id="f-ring" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="f-arc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+    <linearGradient id="f-wm" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFAA38"/><stop offset="100%" stop-color="#FF5F1F"/>
+    </linearGradient>
+  </defs>
+  <circle cx="40" cy="46" r="34" stroke="url(#f-ring)" stroke-width="2" fill="none"/>
+  <line x1="13"   y1="57"   x2="67"   y2="33"  stroke="#FF8828" stroke-width="4"   stroke-linecap="round"/>
+  <line x1="26.5" y1="38.6" x2="26.5" y2="51"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <line x1="40"   y1="31"   x2="40"   y2="45"  stroke="#FF8828" stroke-width="3.5" stroke-linecap="round"/>
+  <line x1="53.5" y1="26.6" x2="53.5" y2="39"  stroke="#FF8828" stroke-width="2"   stroke-linecap="round"/>
+  <path d="M13 57 Q40 12 67 33" stroke="url(#f-arc)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <circle cx="13" cy="57" r="7" fill="#FFAA38"/>
+  <circle cx="67" cy="33" r="7" fill="#FF5F1F"/>
+  <text x="96" y="56" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="56" letter-spacing="-2" fill="url(#f-wm)">AA</text>
+  <text x="100" y="70" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="13" letter-spacing="4" fill="rgba(255,255,255,0.65)">SQUARED</text>
+  <text x="100" y="84" font-family="'Plus Jakarta Sans', sans-serif" font-weight="400" font-size="11" letter-spacing="0.5" fill="rgba(255,255,255,0.75)">Bridging US brands into Europe</text>
+</svg></span>
+      <div class="footer-links">
+        <a href="mailto:adam.kanter@aasquaredbv.com">adam.kanter@aasquaredbv.com</a>
+        <a href="https://linkedin.com/in/adamskanter" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+      <span class="footer-copy">Adam Kanter · Fractional &amp; Interim Head of Media · © 2026 AA Squared</span>
+    </div>
+  </div>
+</footer>
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+(function () {
+  'use strict';
+  /* ---- NAV SCROLL ---- */
+  const nav = document.getElementById('nav');
+  function onScroll() {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+  /* ---- MOBILE NAV ---- */
+  const burger = document.getElementById('burger');
+  const mobileNav = document.getElementById('mobileNav');
+  let mobileOpen = false;
+  burger.addEventListener('click', function () {
+    mobileOpen = !mobileOpen;
+    mobileNav.classList.toggle('open', mobileOpen);
+    burger.setAttribute('aria-expanded', String(mobileOpen));
+    mobileNav.setAttribute('aria-hidden', String(!mobileOpen));
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+  });
+  window.closeMobileNav = function () {
+    mobileOpen = false;
+    mobileNav.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    mobileNav.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && mobileOpen) closeMobileNav();
+  });
+  /* ---- HERO ANIMATION ---- */
+  const headline = document.getElementById('heroHeadline');
+  const headlineText = "Europe is 30+ distinct markets. Most US companies budget for one.";
+  const words = headlineText.split(' ');
+  headline.innerHTML = words.map(function (w) {
+    return '<span class="word">' + w + '</span>';
+  }).join(' ');
+  const wordEls = headline.querySelectorAll('.word');
+  wordEls.forEach(function (el, i) {
+    setTimeout(function () {
+      el.classList.add('visible');
+    }, 120 + i * 55);
+  });
+  setTimeout(function () {
+    document.getElementById('heroSubhead').classList.add('visible');
+  }, 120 + words.length * 55 + 80);
+  setTimeout(function () {
+    document.getElementById('heroCtas').classList.add('visible');
+  }, 120 + words.length * 55 + 260);
+  /* ---- INTERSECTION OBSERVER — FADE UP ---- */
+  const fadeEls = document.querySelectorAll('.fade-up');
+  const fadeObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        fadeObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  fadeEls.forEach(function (el) { fadeObserver.observe(el); });
+  /* ---- STEP CARDS STAGGER ---- */
+  const cards = document.querySelectorAll('.step-card');
+  const cardObserver = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        const idx = Array.from(cards).indexOf(entry.target);
+        setTimeout(function () {
+          entry.target.classList.add('visible');
+        }, idx * 60);
+        cardObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(function (card) { cardObserver.observe(card); });
+  /* ---- STATS COUNT-UP ---- */
+  const statEls = document.querySelectorAll('.stat-number[data-target]');
+  let statsAnimated = false;
+  function animateStat(el) {
+    const target = parseFloat(el.dataset.target);
+    const decimals = parseInt(el.dataset.decimal || '0', 10);
+    const prefix = el.dataset.prefix || '';
+    const suffix = el.dataset.suffix || '';
+    const duration = 1400;
+    const startTime = performance.now();
+    function step(now) {
+      const elapsed = now - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = eased * target;
+      el.textContent = prefix + value.toFixed(decimals) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const statsSection = document.getElementById('problem');
+  const statsObserver = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting && !statsAnimated) {
+      statsAnimated = true;
+      statEls.forEach(function (el) { animateStat(el); });
+      statsObserver.disconnect();
+    }
+  }, { threshold: 0.3 });
+  if (statsSection) statsObserver.observe(statsSection);
+})();
+</script>
+</body>
+</html>
