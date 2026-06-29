@@ -608,6 +608,98 @@ footer {
   .hero-ctas { flex-direction: column; align-items: flex-start; }
   .hero-ctas .btn { width: 100%; justify-content: center; }
 }
+/* ==================== METHODOLOGY COMPONENTS ==================== */
+.method-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: var(--sp-3) 0; }
+.method-tag {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 12px 6px 8px;
+  background: var(--cream-dark); border: 1px solid var(--rule); border-radius: 6px;
+}
+.method-tag-dot {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--orange);
+  color: var(--white); font-size: 11px; font-weight: 700; display: flex;
+  align-items: center; justify-content: center; flex-shrink: 0;
+}
+.method-tag-text { font-size: 13px; font-weight: 600; color: var(--ink); }
+
+.s-row { display: flex; gap: 8px; flex-wrap: wrap; margin: var(--sp-3) 0; }
+.s-tag {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 4px;
+}
+.s-portable { background: rgba(76,175,80,0.12); color: #2a7a2d; }
+.s-adapt { background: rgba(232,114,12,0.12); color: var(--orange); }
+.s-rebuild { background: rgba(200,40,40,0.1); color: #b52a2a; }
+.s-reconsider { background: rgba(33,150,243,0.1); color: #1565c0; }
+.s-critical { background: rgba(200,40,40,0.14); color: #9a1a1a; }
+.s-agree { background: rgba(76,175,80,0.12); color: #2a7a2d; }
+
+.var-list { display: flex; flex-direction: column; gap: 5px; margin: var(--sp-3) 0; }
+.var-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 12px; border-radius: 5px;
+  background: var(--cream-dark); border: 1px solid var(--rule);
+}
+.var-num { font-size: 11px; font-weight: 700; color: var(--orange); width: 16px; flex-shrink: 0; }
+.var-name { font-size: 13px; font-weight: 600; color: var(--ink); flex: 1; }
+.var-scale { font-size: 11px; color: var(--ink-light); }
+
+.model-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: var(--sp-3) 0; }
+.model-chip {
+  padding: 12px; border-radius: 8px; border: 1.5px solid var(--rule);
+  display: flex; flex-direction: column; gap: 4px;
+}
+.model-chip.rec { border-color: var(--orange); background: rgba(232,114,12,0.04); }
+.model-chip-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); }
+.model-chip.rec .model-chip-badge { color: var(--orange); }
+.model-chip-title { font-size: 13px; font-weight: 700; color: var(--ink); }
+.model-chip-sub { font-size: 11px; color: var(--ink-light); line-height: 1.4; }
+
+.channel-rows { display: flex; flex-direction: column; gap: 5px; margin: var(--sp-3) 0; }
+.ch-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 7px 10px; border-radius: 5px; background: var(--cream-dark); border: 1px solid var(--rule);
+}
+.ch-name { font-size: 13px; font-weight: 600; color: var(--ink); }
+
+.reality-items { display: flex; flex-direction: column; gap: 8px; margin: var(--sp-3) 0; }
+.reality-item {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 10px 12px; border-radius: 6px; border: 1px solid var(--rule);
+}
+.reality-num {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--orange);
+  color: var(--white); font-size: 11px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px;
+}
+.reality-body { flex: 1; min-width: 0; }
+.reality-title { font-size: 13px; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+.reality-note { font-size: 12px; color: var(--ink-light); line-height: 1.4; }
+
+.pullquote {
+  border-left: 3px solid var(--orange); padding: 12px 16px; margin: var(--sp-3) 0;
+  font-size: 14px; line-height: 1.65; color: var(--ink-light); font-style: italic;
+}
+
+.lead-callout {
+  background: rgba(232,114,12,0.06); border: 1px solid rgba(232,114,12,0.2);
+  border-radius: 8px; padding: var(--sp-3); margin: var(--sp-3) 0;
+}
+.lead-callout-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--orange); margin-bottom: 8px;
+}
+.lead-item {
+  display: flex; justify-content: space-between; align-items: center; font-size: 13px;
+  padding: 5px 0; border-bottom: 1px solid rgba(232,114,12,0.12);
+}
+.lead-item:last-child { border-bottom: none; }
+.lead-market { font-weight: 600; color: var(--ink); }
+.lead-val { color: var(--ink-light); font-size: 12px; text-align: right; }
+.lead-val strong { color: var(--ink); }
+
+@media (max-width: 600px) { .model-row { grid-template-columns: 1fr; } }
+
 /* ==================== STEP VISUAL WRAPPERS ==================== */
 .svg-wrap {
   background: var(--cream);
@@ -793,13 +885,26 @@ footer {
           <span class="step-badge-label">Step 01 — Benchmark</span>
         </div>
         <h2 class="step-title">Know what you don't know.</h2>
-        <p class="step-body">Before you ship a single creative asset or place a single Euro of media spend, you need to know what you don't know. Consumer expectations, platform behavior, brand awareness levels, and competitive intensity all vary dramatically across European markets. What your US performance data tells you about CAC, LTV, and conversion rates may be directionally useless on day one in Berlin or Barcelona. This step establishes your actual baseline. Not the one you assumed you had.</p>
+        <p class="step-body">The Benchmark Audit pressure-tests every US assumption against European reality before a euro is spent. Consumer expectations, platform behaviour, brand awareness levels, and competitive intensity all vary dramatically across markets. What your US performance data tells you about CAC, LTV, and conversion rates may be directionally useless on day one in Berlin or Barcelona.</p>
+        <p class="step-body" style="margin-top:var(--sp-2);">The audit works through five dimensions. Each assumption is classified as one of three outcomes:</p>
+        <div class="method-tags">
+          <div class="method-tag"><div class="method-tag-dot">A</div><span class="method-tag-text">Audience</span></div>
+          <div class="method-tag"><div class="method-tag-dot">C</div><span class="method-tag-text">Channel Mix</span></div>
+          <div class="method-tag"><div class="method-tag-dot">M</div><span class="method-tag-text">Measurement</span></div>
+          <div class="method-tag"><div class="method-tag-dot">B</div><span class="method-tag-text">Budget</span></div>
+          <div class="method-tag"><div class="method-tag-dot">M</div><span class="method-tag-text">Market Assumptions</span></div>
+        </div>
+        <div class="s-row">
+          <span class="s-tag s-portable">✓ Portable</span>
+          <span class="s-tag s-adapt">⚑ Adapt</span>
+          <span class="s-tag s-rebuild">✕ Rebuild</span>
+        </div>
         <div>
           <div class="deliverables-label">Deliverables</div>
           <ul class="deliverables-list">
-            <li>Competitive landscape audit</li>
-            <li>US vs. EU assumption gap analysis</li>
-            <li>Baseline performance benchmarks</li>
+            <li>Five-dimension assumption audit across Audience, Channel, Measurement, Budget and Market</li>
+            <li>Portable / Adapt / Rebuild classification for each assumption</li>
+            <li>Prioritised list of what to revisit before market selection or budget commitment</li>
           </ul>
         </div>
       </div>
@@ -854,13 +959,21 @@ footer {
           <span class="step-badge-label">Step 02 — Rank</span>
         </div>
         <h2 class="step-title">Not all markets deserve your attention first.</h2>
-        <p class="step-body">Not all European markets are created equal, and not all of them deserve your attention first. Market prioritization should be driven by the intersection of addressable audience size, category penetration, media cost structures, and your ability to compete given existing local players. This step gives you a defensible, data-backed sequencing rationale, so you can explain to your board exactly why you're starting in market X instead of chasing every flag on the map.</p>
+        <p class="step-body">Market prioritisation should be driven by the intersection of addressable audience size, category penetration, media cost structures, and competitive density — not instinct, founder preference, or which market feels familiar. The Rank scoring model gives you a defensible, media-informed sequence you can present to a board and actually defend.</p>
+        <p class="step-body" style="margin-top:var(--sp-2);">Each candidate market is scored 1–5 across five variables. A score of 5 is highly favourable; 1 is high risk or low opportunity.</p>
+        <div class="var-list">
+          <div class="var-item"><span class="var-num">1</span><span class="var-name">Addressable Audience</span><span class="var-scale">1–5</span></div>
+          <div class="var-item"><span class="var-num">2</span><span class="var-name">Media Cost Efficiency &amp; Entry Threshold</span><span class="var-scale">1–5</span></div>
+          <div class="var-item"><span class="var-num">3</span><span class="var-name">Competitive White Space</span><span class="var-scale">1–5</span></div>
+          <div class="var-item"><span class="var-num">4</span><span class="var-name">Language &amp; Creative Complexity</span><span class="var-scale">1–5</span></div>
+          <div class="var-item"><span class="var-num">5</span><span class="var-name">Regulatory Environment</span><span class="var-scale">1–5</span></div>
+        </div>
         <div>
           <div class="deliverables-label">Deliverables</div>
           <ul class="deliverables-list">
-            <li>Market scoring matrix</li>
-            <li>Prioritized entry sequence</li>
-            <li>Board-ready rationale</li>
+            <li>Scored market matrix across all five variables (out of 25)</li>
+            <li>Prioritised entry sequence with board-ready rationale</li>
+            <li>Assumption flags and reassessment triggers per market</li>
           </ul>
         </div>
       </div>
@@ -938,13 +1051,27 @@ footer {
           <span class="step-badge-label">Step 03 — Identify</span>
         </div>
         <h2 class="step-title">Map where your audience actually lives.</h2>
-        <p class="step-body">European channel dynamics are not a scaled copy of the US. TikTok penetration varies wildly by country. Google Shopping behaves differently across markets. Influencer economics, affiliate ecosystems, and streaming inventory all shift. Before you commit budget or agency relationships, you need a clear map of which channels actually reach your target consumer in each priority market, and at what cost.</p>
+        <p class="step-body">European channel dynamics are not a scaled copy of the US. Each channel gets a status: <strong>Adapt</strong> (US approach works but needs adjustment), <strong>Rebuild</strong> (US approach breaks — needs to be built from European inputs), or <strong>Reconsider</strong> (a channel dismissed in the US but meaningfully relevant in Europe).</p>
+        <div class="channel-rows">
+          <div class="ch-row"><span class="ch-name">Paid Social</span><span class="s-tag s-adapt">Adapt</span></div>
+          <div class="ch-row"><span class="ch-name">Paid Search</span><span class="s-tag s-adapt">Adapt</span></div>
+          <div class="ch-row"><span class="ch-name">Programmatic Display</span><span class="s-tag s-rebuild">Rebuild</span></div>
+          <div class="ch-row"><span class="ch-name">Linear TV</span><span class="s-tag s-reconsider">Reconsider</span></div>
+          <div class="ch-row"><span class="ch-name">Out of Home</span><span class="s-tag s-reconsider">Reconsider</span></div>
+          <div class="ch-row"><span class="ch-name">Streaming &amp; Online Video</span><span class="s-tag s-adapt">Adapt</span></div>
+        </div>
+        <div class="lead-callout">
+          <div class="lead-callout-label">TV Lead Times — Don't Get Caught Out</div>
+          <div class="lead-item"><span class="lead-market">Germany</span><span class="lead-val"><strong>10–14 weeks</strong> · Q4 books out by August</span></div>
+          <div class="lead-item"><span class="lead-market">France</span><span class="lead-val"><strong>8–12 weeks</strong> · Summer and Q4 heavily competitive</span></div>
+          <div class="lead-item"><span class="lead-market">UK</span><span class="lead-val"><strong>6–8 weeks</strong> · Peak seasons book at 10+</span></div>
+        </div>
         <div>
           <div class="deliverables-label">Deliverables</div>
           <ul class="deliverables-list">
-            <li>Channel landscape map by market</li>
-            <li>Cost benchmark analysis</li>
-            <li>Media mix recommendation</li>
+            <li>Channel-by-channel status assessment (Adapt / Rebuild / Reconsider)</li>
+            <li>Market-by-market TV and OOH lead time planning guide</li>
+            <li>Media mix recommendation for priority markets</li>
           </ul>
         </div>
       </div>
@@ -1002,13 +1129,31 @@ footer {
           <span class="step-badge-label">Step 04 — Design</span>
         </div>
         <h2 class="step-title">Structure that compounds, not a launch that evaporates.</h2>
-        <p class="step-body">Speed without structure is how you burn a European budget in 90 days and have nothing to show for it. A well-designed rollout sequences markets and channels so that each phase generates learnings that inform the next one. You're not launching everywhere at once. You're building a compounding evidence base that increases your probability of success as you scale.</p>
+        <p class="step-body">Speed without structure is how you burn a European budget in 90 days and have nothing to show for it. The Design step selects the right rollout model for this company's budget, internal capacity, and board expectations — and sequences markets and channels so that each phase generates learnings that inform the next.</p>
+        <div class="model-row">
+          <div class="model-chip">
+            <span class="model-chip-badge">Low Complexity</span>
+            <span class="model-chip-title">Depth-First</span>
+            <span class="model-chip-sub">One market done properly before the next</span>
+          </div>
+          <div class="model-chip rec">
+            <span class="model-chip-badge">Recommended</span>
+            <span class="model-chip-title">Pilot &amp; Parallel</span>
+            <span class="model-chip-sub">One market deep, one or two markets light</span>
+          </div>
+          <div class="model-chip">
+            <span class="model-chip-badge">High Complexity</span>
+            <span class="model-chip-title">Breadth-First</span>
+            <span class="model-chip-sub">Multiple markets simultaneously</span>
+          </div>
+        </div>
+        <div class="pullquote">Seven markets at invisible spend levels is not traction. Two markets with proven CAC, a validated channel mix, and a repeatable playbook is.</div>
         <div>
           <div class="deliverables-label">Deliverables</div>
           <ul class="deliverables-list">
-            <li>Phased rollout blueprint</li>
-            <li>Learning agenda</li>
-            <li>Budget sequencing model</li>
+            <li>Agreed rollout model with diagnostic rationale</li>
+            <li>Phased rollout blueprint and learning agenda</li>
+            <li>Budget sequencing model across phases and markets</li>
           </ul>
         </div>
       </div>
@@ -1073,13 +1218,31 @@ footer {
           <span class="step-badge-label">Step 05 — Govern</span>
         </div>
         <h2 class="step-title">Accountability before activity.</h2>
-        <p class="step-body">European expansion often means new agency relationships: local buyers, regional networks, specialist partners. Without clear governance, you end up with fragmented accountability, misaligned incentives, and reporting that doesn't connect back to your business objectives. This step defines how you structure, brief, and manage agency partners so that everyone is pulling in the same direction from day one.</p>
+        <p class="step-body">European expansion often means new agency relationships — local buyers, regional networks, specialist partners. Without the right governance structure from day one, you get fragmented accountability, misaligned incentives, and reporting that doesn't connect to business objectives. The Govern step designs the agency model to match how the company actually operates.</p>
+        <div class="model-row">
+          <div class="model-chip rec">
+            <span class="model-chip-badge">Entry Stage</span>
+            <span class="model-chip-title">Centralised</span>
+            <span class="model-chip-sub">One agency, pan-European scope</span>
+          </div>
+          <div class="model-chip">
+            <span class="model-chip-badge">Recommended at Scale</span>
+            <span class="model-chip-title">Hybrid</span>
+            <span class="model-chip-sub">Thin central layer, local execution</span>
+          </div>
+          <div class="model-chip">
+            <span class="model-chip-badge">Mature Stage</span>
+            <span class="model-chip-title">Localised</span>
+            <span class="model-chip-sub">Separate agencies per market</span>
+          </div>
+        </div>
+        <div class="pullquote">The agency model that works is the one that reflects how the company itself is organised. Design the structure to match the internal reality — then plan explicitly for how both evolve together.</div>
         <div>
           <div class="deliverables-label">Deliverables</div>
           <ul class="deliverables-list">
-            <li>Agency governance model</li>
-            <li>Briefing templates</li>
-            <li>Accountability framework</li>
+            <li>Agency model recommendation for entry stage</li>
+            <li>Target model at scale with trigger for evolution</li>
+            <li>Briefing structure and accountability framework</li>
           </ul>
         </div>
       </div>
@@ -1139,13 +1302,47 @@ footer {
           <span class="step-badge-label">Step 06 — Evaluate</span>
         </div>
         <h2 class="step-title">Measure what actually happened, not what you hoped did.</h2>
-        <p class="step-body">Your US measurement stack may not translate. Cookie consent laws, data residency requirements, and platform-level tracking limitations all affect your ability to measure performance across European markets. Attribution models that work in the US need to be pressure-tested before they become the basis for budget decisions in markets with fundamentally different data environments.</p>
+        <p class="step-body">Your US measurement stack may not translate. The Evaluate step surfaces four realities US companies consistently aren't ready for — and establishes the measurement infrastructure that needs to be in place before significant budget is deployed.</p>
+        <div class="reality-items">
+          <div class="reality-item">
+            <div class="reality-num">01</div>
+            <div class="reality-body">
+              <div class="reality-title">GDPR changes what you can measure</div>
+              <div class="reality-note">Cookie-based attribution, retargeting pools, and cross-device tracking all take a material hit — particularly in DE, FR, NL where consent rates are lowest.</div>
+            </div>
+            <span class="s-tag s-rebuild" style="flex-shrink:0;align-self:center;">Rebuild</span>
+          </div>
+          <div class="reality-item">
+            <div class="reality-num">02</div>
+            <div class="reality-body">
+              <div class="reality-title">Smaller markets mean less data</div>
+              <div class="reality-note">MMM and A/B testing require longer time horizons in markets of 10–18 million people. Statistical confidence takes more time — or a different methodology.</div>
+            </div>
+            <span class="s-tag s-adapt" style="flex-shrink:0;align-self:center;">Adapt</span>
+          </div>
+          <div class="reality-item">
+            <div class="reality-num">03</div>
+            <div class="reality-body">
+              <div class="reality-title">Measurement infrastructure before spend</div>
+              <div class="reality-note">Data connections, baseline tracking, and attribution approach must be agreed and in place before significant budget is deployed — not after the first campaign has run.</div>
+            </div>
+            <span class="s-tag s-critical" style="flex-shrink:0;align-self:center;">Critical</span>
+          </div>
+          <div class="reality-item">
+            <div class="reality-num">04</div>
+            <div class="reality-body">
+              <div class="reality-title">Define success before you spend</div>
+              <div class="reality-note">Months 1–3: infrastructure and baseline. Months 4–6: first real signals. Months 6–12: validated conclusions. Agree the timeline before anyone opens the brief.</div>
+            </div>
+            <span class="s-tag s-agree" style="flex-shrink:0;align-self:center;">Agree Early</span>
+          </div>
+        </div>
         <div>
           <div class="deliverables-label">Deliverables</div>
           <ul class="deliverables-list">
-            <li>Measurement architecture</li>
-            <li>Attribution model review</li>
-            <li>European-compliant analytics setup</li>
+            <li>Measurement readiness gap analysis</li>
+            <li>European-compliant attribution and analytics approach</li>
+            <li>Agreed success milestones by stage (months 1–3, 4–6, 6–12)</li>
           </ul>
         </div>
       </div>
