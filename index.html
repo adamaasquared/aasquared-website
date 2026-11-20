@@ -501,6 +501,51 @@ button { cursor: pointer; font-family: inherit; border: none; background: none; 
   line-height: 1.7;
   text-align: left;
 }
+.ai-note-link {
+  display: inline-block;
+  margin-top: var(--sp-3);
+  font-weight: 600;
+  color: var(--orange-muted);
+  transition: color var(--transition);
+}
+.ai-note-link:hover { color: var(--orange); }
+
+/* ==================== SELECTED WORK ==================== */
+#work {
+  background: var(--cream);
+  padding: var(--sp-10) 0;
+  scroll-margin-top: 80px;
+}
+.work-header { margin-bottom: var(--sp-6); }
+.work-header .t-label { margin-bottom: var(--sp-3); }
+.work-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  max-width: 720px;
+  background: var(--white);
+  border: 1.5px solid var(--rule);
+  border-radius: var(--radius-lg);
+  padding: var(--sp-6);
+  box-shadow: 0 2px 8px rgba(44,44,44,0.06);
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+.work-card:hover {
+  border-color: var(--orange);
+  box-shadow: 0 8px 32px rgba(232,114,12,0.14);
+}
+.work-card-meta { font-size: 13px; font-weight: 600; color: var(--orange); letter-spacing: 0.04em; }
+.work-card-title { font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; line-height: 1.25; color: var(--ink); letter-spacing: -0.01em; }
+.work-card-desc { font-size: 17px; color: var(--ink-light); line-height: 1.6; }
+.work-card-link {
+  margin-top: var(--sp-2);
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--orange);
+  transition: color var(--transition);
+}
+.work-card:hover .work-card-link { color: var(--orange-hover); }
+@media (max-width: 480px) { .work-card { padding: var(--sp-4); } }
 
 /* ==================== CTA ==================== */
 #cta {
@@ -575,6 +620,7 @@ footer {
 @media (max-width: 768px) {
   .nav-links, .nav-cta .btn { display: none; }
   .nav-burger { display: flex; }
+  .nav-logo { height: 56px; }
   .cards-grid {
     display: flex;
     overflow-x: auto;
@@ -608,6 +654,7 @@ footer {
 <!-- ==================== MOBILE NAV ==================== -->
 <div class="mobile-nav" id="mobileNav" aria-hidden="true">
   <a href="services.html" onclick="closeMobileNav()">Services</a>
+  <a href="#work" onclick="closeMobileNav()">Work</a>
   <a href="mailto:adam@aasquared.co" onclick="closeMobileNav()">Contact</a>
   <a href="mailto:adam@aasquared.co" class="btn btn-primary" style="margin-top:16px" onclick="closeMobileNav()">Schedule a Call</a>
 </div>
@@ -642,6 +689,7 @@ footer {
 </svg></a>
       <ul class="nav-links" role="list">
         <li><a href="services.html" class="active">Services</a></li>
+        <li><a href="#work">Work</a></li>
         <li><a href="mailto:adam@aasquared.co">Contact</a></li>
       </ul>
       <div class="nav-cta">
@@ -827,7 +875,23 @@ footer {
     </div>
     <div class="ai-note fade-up" style="transition-delay:0.28s">
       I use AI tools systematically across my work: research, strategy, brief writing, and client deliverables, including custom-built workflows for recurring tasks. All outputs are reviewed, validated, and owned by me. AI accelerates my work. It does not replace my judgment.
+      <a href="/ai-research-analyst" class="ai-note-link">Case study: how I built an AI research analyst →</a>
     </div>
+  </div>
+</section>
+
+<!-- ==================== SELECTED WORK ==================== -->
+<section id="work" aria-label="Selected work">
+  <div class="container">
+    <div class="work-header fade-up">
+      <p class="t-label">Selected Work</p>
+    </div>
+    <a href="/ai-research-analyst" class="work-card fade-up" style="transition-delay:0.1s">
+      <span class="work-card-meta">Case study · AI market intelligence</span>
+      <h3 class="work-card-title">From 10 hours to 20 minutes</h3>
+      <p class="work-card-desc">How I built an AI research analyst to automate market intelligence, and what a marketing team can learn from it</p>
+      <span class="work-card-link">Read the case study →</span>
+    </a>
   </div>
 </section>
 
